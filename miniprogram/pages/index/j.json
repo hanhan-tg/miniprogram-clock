@@ -1,0 +1,27 @@
+{
+  "wx_id": "wx_id",
+  "stu_id": "stu_id",
+  "name": "hanhan",
+  "classname": "rg1888",
+  "group": [
+    {
+      "g_id": "gid",
+      "gl_id": "wx_id",
+      "name": "groupname",
+      "is_disband": false,
+      "task": [
+        {
+          "id": "task_id",
+          "name": "task1",
+          "target": "ttarget",
+          "start_time": "new Date()",
+          "end_time": "new Date()",
+          "address": "nc",
+          "complete": false,
+          "complete_time": "new Date()",
+          "commonts": "commonts"
+        }
+      ]
+    }
+  ]
+}
