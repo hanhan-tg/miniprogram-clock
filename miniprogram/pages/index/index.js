@@ -19,6 +19,10 @@ Page({
     }]
   },
   onLoad() {
+    console.log('load');
+    wx.switchTab({
+      url: '/pages/my/index',
+    })
   },
   async onClick(e) {
     // console.log('click', e.detail.id);
@@ -35,6 +39,7 @@ Page({
   },
   onAdd() {
     console.log('click add');
+    
   }
 });
 

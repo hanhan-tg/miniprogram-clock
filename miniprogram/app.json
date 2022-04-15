@@ -10,7 +10,8 @@
   ],
   "usingComponents": {
     "t-button": "./miniprogram_npm/tdesign-miniprogram/button/button",
-    "t-icon": "./miniprogram_npm/tdesign-miniprogram/icon/icon"
+    "t-icon": "./miniprogram_npm/tdesign-miniprogram/icon/icon",
+    "t-avatar": "./miniprogram_npm/tdesign-miniprogram/avatar/avatar"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

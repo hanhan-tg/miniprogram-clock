@@ -1,0 +1,32 @@
+/* components/card/index.wxss */
+.card-container {
+  /* box-sizing: content-box; */
+  width: 650rpx;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50rpx 30rpx;
+  /* padding-left: 50px; */
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+
+.left {
+  margin-left: 30rpx;
+}
+
+.username {
+  margin-bottom: 30rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.id {
+  color: rgba(0, 0, 0, .6)
+}
+
+.right {
+  margin-right: 30rpx;
+}

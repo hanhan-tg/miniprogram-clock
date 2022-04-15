@@ -1,10 +1,29 @@
 // pages/my/index.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+
+  },
+
+  onClickGroupCreated() {
+    wx.navigateTo({
+      url: '/pages/createdGroup/index',
+    })
+  },
+  onClickGroupJoined() {
+    wx.navigateTo({
+      url: '/pages/joinedGroup/index',
+    })
+  },
+  onClickClock() {
+    wx.navigateTo({
+      url: '/pages/completeTasks/index',
+    })
+  },
+  onClickJoin(){
+
+  },
+  onClickSetting() {
 
   },
 

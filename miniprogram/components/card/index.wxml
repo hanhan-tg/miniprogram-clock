@@ -1,0 +1,10 @@
+<!--components/card/index.wxml-->
+<view class="card-container">
+  <view class="left">
+    <view class="username">姓名：{{name}}</view>
+    <view class="id">学号/工号：{{stuid}}</view>
+  </view>
+  <view class="right">
+    <t-avatar icon="user"></t-avatar>
+  </view>
+</view>

@@ -1,4 +1,42 @@
 <!--pages/my/index.wxml-->
-<view class="container">
-  aaa
+
+<view class="my-container">
+    <Card name="何嘉伟" stuid="8002118218"></Card>
+    <view class="content">
+        <view class="item" bindtap="onClickGroupCreated">
+            <view class="left">
+                <t-icon name="user"></t-icon>
+                <view class="text">我创建的队伍</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
+        <view class="item" bindtap="onClickGroupJoined">
+            <view class="left">
+                <t-icon name="usergroup"></t-icon>
+                <view class="text">我参与的队伍</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
+        <view class="item" bindtap="onClickClock">
+            <view class="left">
+                <t-icon name="check-circle"></t-icon>
+                <view class="text">我完成的打卡</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
+        <view class="item" bindtap="onClickJoin">
+            <view class="left">
+                <t-icon name="usergroup-add"></t-icon>
+                <view class="text">加入队伍</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
+        <view class="item" bindtap="onClickSetting">
+            <view class="left">
+                <t-icon name="setting"></t-icon>
+                <view class="text">设置</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
+    </view>
 </view>
