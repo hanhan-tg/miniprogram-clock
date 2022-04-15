@@ -1,0 +1,17 @@
+<!--pages/login/index.wxml-->
+<view class="login-container">
+  <view class="title">首次登录</view>
+  <view class="block">
+    <view class="name">姓名：</view>
+    <t-input class="input" model:value="{{name}}"></t-input>
+  </view>
+  <view class="block">
+    <view class="name">学号/工号：</view>
+    <t-input class="input" model:value="{{sid}}"></t-input>
+  </view>
+  <view class="block">
+    <view class="name">班级：</view>
+    <t-input class="input" model:value="{{classname}}"></t-input>
+  </view>
+  <t-button theme="primary" block class="btn" bindtap="onClickEnter">进入</t-button>
+</view>

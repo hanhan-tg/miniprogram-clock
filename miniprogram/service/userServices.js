@@ -48,5 +48,5 @@ export async function getMyInfo() {
       classname: myInfo.classname
     }
   }
-  return {}
+  return false
 }

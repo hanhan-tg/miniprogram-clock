@@ -1,4 +1,4 @@
-import { createTask, getOneTask } from "../../service/index";
+import { createTask, getOneTask, isRegister } from "../../service/index";
 
 // index.js
 const app = getApp()
@@ -20,11 +20,13 @@ Page({
       select: true
     }]
   },
-  onLoad() {
+  async onLoad() {
     console.log('load');
-    // wx.navigateTo({
-    //   url: '/pages/createdGroup/index',
-    // })
+    if(!await isRegister()) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+    }
   },
   async onClick(e) {
     const id = e.detail.id;

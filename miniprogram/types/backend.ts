@@ -6,6 +6,9 @@ interface CreateUser {
   name: String,
   classname: String,
 }
+interface isRegistered {
+  
+}
 interface getMyInfo {
 
 }
