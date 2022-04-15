@@ -6,14 +6,19 @@
     "pages/createdGroup/index",
     "pages/joinedGroup/index",
     "pages/completeTasks/index",
-    "pages/dataAnalysis/index"
+    "pages/dataAnalysis/index",
+    "pages/login/index"
   ],
   "usingComponents": {
     "t-button": "./miniprogram_npm/tdesign-miniprogram/button/button",
     "t-icon": "./miniprogram_npm/tdesign-miniprogram/icon/icon",
     "t-avatar": "./miniprogram_npm/tdesign-miniprogram/avatar/avatar",
     "t-input": "./miniprogram_npm/tdesign-miniprogram/input/input",
-    "t-toast": "./miniprogram_npm/tdesign-miniprogram/toast/toast"
+    "t-toast": "./miniprogram_npm/tdesign-miniprogram/toast/toast",
+    "t-tab-bar": "./miniprogram_npm/tdesign-miniprogram/tab-bar/tab-bar",
+    "t-tab-bar-item": "./miniprogram_npm/tdesign-miniprogram/tab-bar/tab-bar-item",
+    "t-popup": "./miniprogram_npm/tdesign-miniprogram/popup/popup",
+    "t-cell": "./miniprogram_npm/tdesign-miniprogram/cell/cell"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

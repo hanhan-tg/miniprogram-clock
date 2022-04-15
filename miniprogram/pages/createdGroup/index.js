@@ -1,23 +1,47 @@
 // pages/createdGroup/index.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    groupList: [
+      {
+        groupName: '开大船',
+        id: 'z',
+        leader: '何嘉伟',
+        memberList: ['何嘉伟','何嘉伟','何嘉伟','何嘉伟']
+      },
+      {
+        groupName: '开大船',
+        id: 'z2',
+        leader: '何嘉伟',
+        memberList: ['何嘉伟','何嘉伟','何嘉伟','何嘉伟']
+      }
+    ],
+    visible: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  onClickSetting() {
+    this.setData({
+      visible: true
+    })
+  },
+  onDataAnalysis() {
+    this.setData({
+      visible: false
+    })
+  },
+  onGroupTransfer() {
+    this.setData({
+      visible: false
+    })
+  },
+  onGroupDisband() {
+    this.setData({
+      visible: false
+    })
+  },
   onLoad: function (options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
 
   },

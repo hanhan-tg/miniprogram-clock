@@ -1,2 +1,33 @@
 <!--pages/createdGroup/index.wxml-->
-<text>pages/createdGroup/index.wxml</text>
+<view class="created-group-container">
+  <view class="group" wx:for="{{groupList}}" wx:key="id">
+    <view class="group-title">
+      <view class="group-title-name">{{item.groupName}}</view>
+      <view class="group-title-control" bindtap="onClickSetting">
+        <t-icon name="setting"></t-icon>
+      </view>
+    </view>
+    <view class="group-content">
+      <view class="group-top">
+        <view class="label">队长：</view>
+        <view class="name">{{item.leader}}</view>
+      </view>
+      <view class="group-bottom">
+        <view class="label">队员：</view>
+        <view class="name">{{item.memberList}}</view>
+      </view>
+    </view>
+  </view>
+  <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click>
+    <view class="setting">
+      <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">
+        <!-- <t-cell title="数据分析" align="middle"></t-cell> -->
+        数据分析
+      </view>
+      <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view>
+      <view class="setting-text" bindtap="onGroupDisband" hover-class="hover">队伍解散</view> 
+    </view>
+  </t-popup>
+
+
+</view>

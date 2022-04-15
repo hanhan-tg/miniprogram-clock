@@ -27,6 +27,7 @@
   border: 1rpx solid #e0e0e0;
   padding: 0 50rpx;
   border-radius: 50rpx;
+  height: 80rpx;
 }
 
 .content-info {

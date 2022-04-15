@@ -5,7 +5,7 @@
   </view>
   <view class="content" wx:for="{{contentList}}" wx:key="id" bindtap="onClick" data-id="{{item.id}}">
     <view class="content-info">{{item.content}}</view>
-    <view class="content-circle" bindtap="{{onSelect}}">
+    <view class="content-circle" bindtap="{{onSelect}}" wx:if="{{item.select !== undefined}}">
       <t-icon name="check-circle" wx:if="{{item.select}}" class="check-circle"></t-icon>
       <t-icon name="circle" wx:else class="circle"></t-icon>
     </view>

@@ -22,9 +22,9 @@ Page({
   },
   onLoad() {
     console.log('load');
-    wx.navigateTo({
-      url: '/pages/createdGroup/index',
-    })
+    // wx.navigateTo({
+    //   url: '/pages/createdGroup/index',
+    // })
   },
   async onClick(e) {
     const id = e.detail.id;

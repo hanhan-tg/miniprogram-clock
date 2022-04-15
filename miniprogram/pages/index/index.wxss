@@ -2,7 +2,7 @@
 
 .container {
   /* width: 100%; */
-  /* border: 1px solid; */
+  border: 1px solid;
   text-align: center;
   padding: 50rpx;
   padding-top: 20rpx;

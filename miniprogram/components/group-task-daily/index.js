@@ -11,6 +11,11 @@ Component({
   data: {
 
   },
+  lifetimes: {
+    created() {
+      // console.log('created', headerText, contentList);
+    }
+  },
   methods: {
     onClick(e) {
       const id = e.currentTarget.dataset.id;
