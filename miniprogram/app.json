@@ -7,7 +7,8 @@
     "pages/joinedGroup/index",
     "pages/completeTasks/index",
     "pages/dataAnalysis/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/groups/index"
   ],
   "usingComponents": {
     "t-button": "./miniprogram_npm/tdesign-miniprogram/button/button",

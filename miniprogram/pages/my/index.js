@@ -7,7 +7,7 @@ Page({
 
   onClickGroupCreated() {
     wx.navigateTo({
-      url: '/pages/createdGroup/index',
+      url: '/pages/groups/index',
     })
   },
   onClickGroupJoined() {

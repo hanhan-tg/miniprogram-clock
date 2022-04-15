@@ -29,7 +29,7 @@ Page({
       })
     }
     wx.navigateTo({
-      url: '/pages/createdGroup/index',
+      url: '/pages/groups/index',
     })
   },
   async onClickDetail(e) {
