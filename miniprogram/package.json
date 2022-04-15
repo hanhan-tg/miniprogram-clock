@@ -9,5 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "tdesign-miniprogram": "^0.7.3"
   }
 }

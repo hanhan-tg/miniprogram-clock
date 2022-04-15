@@ -1,4 +1,13 @@
 /**app.wxss**/
+:root {
+  box-sizing: border-box;
+}
+page {
+  background: #f0F0F0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -6,7 +15,7 @@
   box-sizing: border-box;
 } 
 
-button {
+/* button {
   background: initial;
 }
 
@@ -16,12 +25,4 @@ button:focus{
 
 button::after{
   border: none;
-}
-
-
-page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
+} */

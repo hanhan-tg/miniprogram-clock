@@ -1,4 +1,5 @@
 {
   "usingComponents": {
+    "group-task-daily": "../../components/group-task-daily/index"
   }
 }
