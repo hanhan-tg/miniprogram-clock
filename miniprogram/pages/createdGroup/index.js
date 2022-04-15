@@ -1,6 +1,6 @@
 // pages/createdGroup/index.js
-Page({
 
+Page({
   data: {
     groupList: [
       {
@@ -18,10 +18,18 @@ Page({
     ],
     visible: false
   },
+  onClickCopy(e) {
+    // console.log(e.currentTarget.dataset.groupId);
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.groupId,
+    })
+
+  },
   onClickSetting() {
     this.setData({
       visible: true
     })
+    
   },
   onDataAnalysis() {
     this.setData({

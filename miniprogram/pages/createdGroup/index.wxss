@@ -20,7 +20,16 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.group-id {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10rpx 0 0;
+  color: rgba(0, 0, 0, .3)
+}
+.group-id-copy {
+  margin-left: 20rpx;
+}
 .group-top {
   margin-bottom: 10rpx;
 }

@@ -5,6 +5,14 @@
     <t-icon name="add-circle" bindtap="onAdd"></t-icon>
   </view>
   <!-- <view class="btn" bindtap="onClick">{{showText}}</view> -->
-  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}" bind:onTaskClick="onClick"></group-task-daily>
-  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}"></group-task-daily>
+  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}" bind:onTaskClick="onClickDetail"></group-task-daily>
+  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}" bind:onTaskClick="onClickDetail"></group-task-daily>
+
+  <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click>
+    <view class="setting">
+      <view class="setting-text" bindtap="onCreateGroup" hover-class="hover">创建队伍</view>
+      <view class="setting-text" bindtap="onJoinGroup" hover-class="hover">加入队伍</view>
+      <view class="setting-text" bindtap="onAddClock" hover-class="hover">添加打卡</view>
+    </view>
+  </t-popup>
 </view>

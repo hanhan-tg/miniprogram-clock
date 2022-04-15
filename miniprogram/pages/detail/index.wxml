@@ -25,7 +25,7 @@
     <textarea cols="30" rows="10" placeholder="填入备注" class="textarea" model:value="{{commonts}}"></textarea>
   </view>
   <view class="btn">
-    <t-button theme="primary" size="large" block bindtap="onClickClock">打卡</t-button>
+    <t-button theme="primary" size="large" block bindtap="onClickClock">{{complete ? '已打卡' : '打卡'}}</t-button>
   </view>
   <t-toast id="t-toast" />
 </view>
