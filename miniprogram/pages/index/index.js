@@ -1,3 +1,5 @@
+import { createTask, getOneTask } from "../../service/index";
+
 // index.js
 const app = getApp()
 
@@ -20,22 +22,18 @@ Page({
   },
   onLoad() {
     console.log('load');
-    wx.switchTab({
-      url: '/pages/my/index',
+    wx.navigateTo({
+      url: '/pages/createdGroup/index',
     })
   },
   async onClick(e) {
-    // console.log('click', e.detail.id);
     const id = e.detail.id;
-    const newList = this.data.contentList.map(v => {
-      if(v.id === id){
-        v.select = true;
-      }
-      return v;
-    });
-    this.setData({
-      contentList: newList
+    const task = await getOneTask({
+      task_id: id,
     })
+    // wx.navigateTo({
+    //   url: `/pages/detail/index?name=${task.name}&target=${task.description}&startTime=${task.start_time}&endTime=${task.end_time}`,
+    // })
   },
   onAdd() {
     console.log('click add');

@@ -1,2 +1,31 @@
 <!--pages/detail/index.wxml-->
-<text>pages/detail/index.wxml</text>
+<view class="detail-container">
+  <view class="item">
+    <view class="prefix">任务名称：</view>
+    <view class="text">{{name}}</view>
+  </view>
+  <view class="item">
+    <view class="prefix">任务目标：</view>
+    <view class="text">{{target}}</view>
+  </view>
+  <view class="item">
+    <view class="prefix">开始时间：</view>
+    <view class="text">{{startTime}}</view>
+  </view>
+  <view class="item">
+    <view class="prefix">结束时间：</view>
+    <view class="text">{{endTime}}</view>
+  </view>
+  <!-- <view class="item">
+    <view class="prefix">打卡地点：</view>
+    <view class="text">{{address}}</view>
+  </view> -->
+  <view class="commonts">
+    <view>备注：</view>
+    <textarea cols="30" rows="10" placeholder="填入备注" class="textarea" model:value="{{commonts}}"></textarea>
+  </view>
+  <view class="btn">
+    <t-button theme="primary" size="large" block bindtap="onClickClock">打卡</t-button>
+  </view>
+  <t-toast id="t-toast" />
+</view>
