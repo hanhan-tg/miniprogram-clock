@@ -33,9 +33,7 @@ Page({
     //     url: '/pages/login/index',
     //   })
     // }
-    // wx.navigateTo({
-    //   url: '/pages/createTask/index',
-    // })
+    
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
@@ -92,30 +90,10 @@ Page({
   },
   onAddClock() {
     this.setData({
-      rootPopupVisible: false,
+      rootPopupVisible: false
     })
-    Dialog.confirm({
-      title: '添加打卡',
-      confirmBtn: '添加',
-      cancelBtn: '取消',
-    }).then(async () => {
-      if (!this.data.newGroupDescription && !this.data.newGroupName) {
-        Toast({
-          context: this,
-          selector: '#t-toast-create-group',
-          message: '请输入完整信息',
-        });
-        return;
-      }
-      const suc = await createGroup({
-        name: this.data.newGroupName,
-        description: this.data.newGroupDescription
-      })
-      Toast({
-        context: this,
-        selector: '#t-toast-create-group',
-        message: suc ? '创建成功' : '创建失败，请重试',
-      });
+    wx.navigateTo({
+      url: '/pages/createTask/index',
     })
   },
 });
