@@ -9,7 +9,8 @@
     "pages/dataAnalysis/index",
     "pages/login/index",
     "pages/groups/index",
-    "pages/searchGroup/index"
+    "pages/searchGroup/index",
+    "pages/createTask/index"
   ],
   "usingComponents": {
     "t-button": "./miniprogram_npm/tdesign-miniprogram/button/button",
@@ -22,7 +23,9 @@
     "t-popup": "./miniprogram_npm/tdesign-miniprogram/popup/popup",
     "t-cell": "./miniprogram_npm/tdesign-miniprogram/cell/cell",
     "t-dialog": "./miniprogram_npm/tdesign-miniprogram/dialog/dialog",
-    "t-search": "./miniprogram_npm/tdesign-miniprogram/search/search"
+    "t-search": "./miniprogram_npm/tdesign-miniprogram/search/search",
+    "t-date-time-picker": "./miniprogram_npm/tdesign-miniprogram/date-time-picker/date-time-picker",
+    "t-message": "./miniprogram_npm/tdesign-miniprogram/message/message"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

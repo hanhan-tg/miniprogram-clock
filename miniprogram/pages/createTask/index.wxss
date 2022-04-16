@@ -1,0 +1,56 @@
+/* pages/createTask/index.wxss */
+.create-task-container {
+  margin: 20rpx 30rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 20rpx 30rpx;
+}
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pickerBtn {
+  border-radius: 30rpx !important;
+  overflow: hidden;
+}
+.block {
+  margin-top: 30rpx;
+}
+.textarea {
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  border: 1rpx solid rgba(0, 0, 0, .1);
+  margin-top: 20rpx;
+  padding: 20rpx 30rpx;
+  color: rgba(0, 0, 0, .7);
+}
+.cell-btn {
+  margin-top: 20rpx;
+  border: 1rpx solid rgba(0, 0, 0, .1);
+  border-radius: 30rpx;
+  overflow: hidden;
+}
+.hover {
+  background-color: rgba(0, 0, 0, .2);
+}
+.createBtn {
+  margin-top: 50rpx;
+  border-radius: 30rpx !important;
+  background-color: skyblue !important;
+}
+.setting {
+  /* height: 500rpx; */
+  background-color: #fff;
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
+  padding: 30rpx 50rpx;
+}
+
+.setting-text {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 20rpx;
+}

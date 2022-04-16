@@ -3,8 +3,8 @@ const { getId } = require('../utils/uuid');
 
 export async function createTask(params) {
   const { group_id, name, description, start_time, end_time } = params
-  let groups = await getAllGroup();
-  let tasks = await getAllTask();
+  let groups = await getAllGroup() || [];
+  let tasks = await getAllTask() || [];
   let success = false;
 
   const newTask = {

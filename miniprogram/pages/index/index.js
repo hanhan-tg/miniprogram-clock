@@ -21,17 +21,21 @@ Page({
       content: '跳绳',
       select: true
     }],
-    visible: false,
+    rootPopupVisible: false,
     newGroupName: '',
-    newGroupDescription: ''
+    newGroupDescription: '',
+    selectedGroupName: '请选择队伍',
   },
   async onLoad() {
     console.log('load');
-    if (!await isRegister()) {
-      wx.navigateTo({
-        url: '/pages/login/index',
-      })
-    }
+    // if (!await isRegister()) {
+    //   wx.navigateTo({
+    //     url: '/pages/login/index',
+    //   })
+    // }
+    // wx.navigateTo({
+    //   url: '/pages/createTask/index',
+    // })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
@@ -47,12 +51,12 @@ Page({
   onAdd() {
     console.log('click add');
     this.setData({
-      visible: true
+      rootPopupVisible: true
     })
   },
   async onCreateGroup() {
     this.setData({
-      visible: false
+      rootPopupVisible: false,
     })
     Dialog.confirm({
       title: '创建队伍',
@@ -80,7 +84,7 @@ Page({
   },
   onJoinGroup() {
     this.setData({
-      visible: false
+      rootPopupVisible: false
     })
     wx.navigateTo({
       url: '/pages/searchGroup/index',
@@ -88,9 +92,32 @@ Page({
   },
   onAddClock() {
     this.setData({
-      visible: false
+      rootPopupVisible: false,
     })
-  }
+    Dialog.confirm({
+      title: '添加打卡',
+      confirmBtn: '添加',
+      cancelBtn: '取消',
+    }).then(async () => {
+      if (!this.data.newGroupDescription && !this.data.newGroupName) {
+        Toast({
+          context: this,
+          selector: '#t-toast-create-group',
+          message: '请输入完整信息',
+        });
+        return;
+      }
+      const suc = await createGroup({
+        name: this.data.newGroupName,
+        description: this.data.newGroupDescription
+      })
+      Toast({
+        context: this,
+        selector: '#t-toast-create-group',
+        message: suc ? '创建成功' : '创建失败，请重试',
+      });
+    })
+  },
 });
 
 
