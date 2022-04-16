@@ -27,6 +27,11 @@
   margin: 10rpx 0 0;
   color: rgba(0, 0, 0, .3)
 }
+.group-id-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .group-id-copy {
   margin-left: 20rpx;
 }

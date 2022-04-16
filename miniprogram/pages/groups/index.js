@@ -1,39 +1,35 @@
 // pages/createdGroup/index.js
+import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
+
+const { getOpenId } = require("../../controller/index")
+const { getMyGroupAsLeader, disbandGroup } = require("../../service/index")
 
 Page({
   data: {
-    groupList: [
-      {
-        groupName: '开大船',
-        id: 'z',
-        leader: '何嘉伟',
-        memberList: ['何嘉伟','何嘉伟','何嘉伟','何嘉伟']
-      },
-      {
-        groupName: '开大船',
-        id: 'z2',
-        leader: '何嘉伟',
-        memberList: ['何嘉伟','何嘉伟','何嘉伟','何嘉伟']
-      }
-    ],
-    visible: false
+    groupList: [],
+    openId: '',
+    visible: false,
+    activeGroupId: '',
   },
   onClickCopy(e) {
-    // console.log(e.currentTarget.dataset.groupId);
     wx.setClipboardData({
       data: e.currentTarget.dataset.groupId,
     })
 
   },
-  onClickSetting() {
+  onClickSetting(e) {
     this.setData({
-      visible: true
+      visible: true,
+      activeGroupId: e.currentTarget.dataset.groupId
     })
-    
+
   },
   onDataAnalysis() {
     this.setData({
       visible: false
+    })
+    wx.navigateTo({
+      url: '/pages/dataAnalysis/index',
     })
   },
   onGroupTransfer() {
@@ -41,58 +37,46 @@ Page({
       visible: false
     })
   },
-  onGroupDisband() {
-    this.setData({
-      visible: false
+  async onGroupDisband() {
+    Dialog.confirm({
+      title: '确认要解散吗？',
+      confirmBtn: '确认',
+      cancelBtn: '取消',
+    }).then(async () => {
+      this.setData({
+        visible: false
+      })
+      const res = await disbandGroup({
+        group_id: this.data.activeGroupId
+      })
+      if (!res) {
+        return;
+      }
+      const newList = this.data.groupList.map(g => {
+        if (g.g_id === this.data.activeGroupId) {
+          return {
+            ...g,
+            is_disband: true
+          }
+        }
+        return g
+      })
+      this.setData({
+        groupList: newList,
+      })
     })
-  },
-  onLoad: function (options) {
+
 
   },
-
-  onReady: function () {
-
+  onLoad: async function (options) {
+    await this.loadData();
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async loadData() {
+    const groups = await getMyGroupAsLeader()
+    const openId = await getOpenId();
+    this.setData({
+      groupList: groups.sort((a,b) => b.create_time - a.create_time),
+      openId
+    })
   }
 })

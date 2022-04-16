@@ -33,9 +33,9 @@ Page({
     //     url: '/pages/login/index',
     //   })
     // }
-    wx.navigateTo({
-      url: '/pages/completeTasks/index',
-    })
+    // wx.navigateTo({
+    //   url: '/pages/groups/index',
+    // })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
