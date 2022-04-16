@@ -90,3 +90,6 @@ interface GetOneTask {
 interface GetTasksInGroup {
   group_id: String
 }
+interface GetdailyTask {
+  
+}

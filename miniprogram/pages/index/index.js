@@ -1,5 +1,5 @@
 import { getOpenId } from "../../controller/index";
-import { createGroup, createTask, getOneTask, isRegister } from "../../service/index";
+import { createGroup, createTask, getMyGroupAsMember, getOneTask, getTasksInGroup, isRegister, getDailyTasks } from "../../service/index";
 import Dialog from '../../miniprogram_npm/tdesign-miniprogram/dialog/index';
 import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 
@@ -7,24 +7,12 @@ import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 
 Page({
   data: {
-    headerText: '开大船',
-    contentList: [{
-      id: '111',
-      content: '跳绳',
-      select: false
-    }, {
-      id: '222',
-      content: '开大船',
-      select: false
-    }, {
-      id: '333',
-      content: '跳绳',
-      select: true
-    }],
+    dailyGroups: [],
     rootPopupVisible: false,
     newGroupName: '',
     newGroupDescription: '',
     selectedGroupName: '请选择队伍',
+    hasJoinedGroup: false,
   },
   async onLoad() {
     console.log('load');
@@ -36,6 +24,12 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/groups/index',
     // })
+    const res = await getDailyTasks();
+    const groups = await getMyGroupAsMember();
+    this.setData({
+      dailyGroups: res,
+      hasJoinedGroup: groups.length > 0
+    })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();

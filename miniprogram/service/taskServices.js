@@ -1,3 +1,5 @@
+import { getMyGroupAsMember } from './groupServices';
+
 const { getAllGroup, getOpenId, getAllUser, getAllTask, updateAllData } = require('../controller/index');
 const { getId } = require('../utils/uuid');
 
@@ -156,11 +158,6 @@ export async function getCompleteTask() {
   };
 }
 
-export async function getTasksNumber () {
-
-}
-
-
 export async function getOneTask(params) {
   const { task_id } = params;
   const tasks = await getAllTask();
@@ -180,4 +177,34 @@ export async function getTasksInGroup(params) {
     }
   })
   return res;
+}
+
+export async function getDailyTasks () {
+  const tasks = await getAllTask();
+  const myOpenId = await getOpenId();
+  let myGroups = await getMyGroupAsMember();
+  myGroups = myGroups.map(g => {
+    const taskList = [];
+    tasks.forEach(t => {
+      if(g.tasks.includes(t.t_id)) {
+        // 判断任务是否今日可做
+        const startTime = new Date(t.start_time).getTime();
+        const endTime = new Date(t.end_time).getTime();
+        const nowTime = new Date().getTime()
+        if(startTime < nowTime && nowTime < endTime) {
+          t.complete = t.completeUsers.find(u => u.wx_id === myOpenId)?.complete || false
+          console.log('ttt', t);
+          taskList.push(t)
+        } 
+      }
+    })
+    if(taskList.length) {
+      return {
+        groupName: g.name,
+        taskList,
+      }
+    }
+    return null;
+  })
+  return myGroups.filter(g => g !== null);
 }

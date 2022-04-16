@@ -26,7 +26,8 @@
     "t-search": "./miniprogram_npm/tdesign-miniprogram/search/search",
     "t-date-time-picker": "./miniprogram_npm/tdesign-miniprogram/date-time-picker/date-time-picker",
     "t-message": "./miniprogram_npm/tdesign-miniprogram/message/message",
-    "t-divider" : "./miniprogram_npm/tdesign-miniprogram/divider/divider"
+    "t-divider" : "./miniprogram_npm/tdesign-miniprogram/divider/divider",
+    "t-footer": "./miniprogram_npm/tdesign-miniprogram/footer/footer"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

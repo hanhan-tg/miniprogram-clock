@@ -73,3 +73,15 @@
   padding: 20rpx 30rpx;
   color: rgba(0, 0, 0, .5);
 }
+.no-task, .no-group {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 20rpx 30rpx;
+}
+.top50 {
+  margin-top: 50rpx;
+}
+.top30 {
+  margin-top: 30rpx;
+}

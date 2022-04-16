@@ -1,12 +1,12 @@
-<!--components/group-task-daily/index.wxml-->
+<!-- components/group-task-daily/index.wxml -->
 <view class="container">
   <view class="header">
     <view class="header-text">{{headerText}}</view>
   </view>
-  <view class="content" wx:for="{{contentList}}" wx:key="id" bindtap="onClick" data-id="{{item.id}}">
-    <view class="content-info">{{item.content}}</view>
-    <view class="content-circle" bindtap="{{onSelect}}" wx:if="{{item.select !== undefined}}">
-      <t-icon name="check-circle" wx:if="{{item.select}}" class="check-circle"></t-icon>
+  <view class="content" wx:for="{{contentList}}" wx:key="id" bindtap="onClick" data-id="{{item.t_id}}">
+    <view class="content-info">{{item.name}}</view>
+    <view class="content-circle" bindtap="{{onSelect}}">
+      <t-icon name="check-circle" wx:if="{{item.complete}}" class="check-circle" ></t-icon>
       <t-icon name="circle" wx:else class="circle"></t-icon>
     </view>
   </view>

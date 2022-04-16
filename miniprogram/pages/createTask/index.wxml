@@ -34,7 +34,7 @@
     <view slot="content">
       <view class="setting">
         <view class="setting-text" wx:if="{{groups.length === 0}}">无</view>
-        <view class="setting-text" bindtap="onClickGroup" hover-class="hover" wx:for="{{groups}}" data-group-id="{{item.g_id}}" data-group-name="{{item.name}}">{{item.name}}</view>
+        <view class="setting-text" bindtap="onClickGroup" hover-class="hover" wx:for="{{groups}}" data-group-id="{{item.g_id}}" data-group-name="{{item.name}}" wx:key="g_id">{{item.name}}</view>
       </view>
     </view>
   </t-popup>

@@ -4,9 +4,33 @@
     <view class="daily-clock">今日打卡</view>
     <t-icon name="add-circle" bindtap="onAdd"></t-icon>
   </view>
-  <!-- <view class="btn" bindtap="onClick">{{showText}}</view> -->
-  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}" bind:onTaskClick="onClickDetail"></group-task-daily>
-  <group-task-daily headerText="{{headerText}}" contentList="{{contentList}}" bind:onTaskClick="onClickDetail"></group-task-daily>
+  <view class="btn" bindtap="onClick">{{showText}}</view>
+  <block>
+    <block wx:if="{{dailyGroups.length > 0}}">
+      <group-task-daily 
+      wx:for="{{dailyGroups}}" 
+      wx:key="t_id" 
+      headerText="{{item.groupName}}" 
+      contentList="{{item.taskList}}" 
+      bind:onTaskClick="onClickDetail" 
+      />
+    </block>
+    <block wx:else>
+      <view class="no-group" wx:if="{{hasJoinedGroup}}">你还没有队伍哦，请先加入队伍再打卡</view>
+      <view wx:else class="no-task">今日暂无打卡</view>
+    </block>
+  </block>
+
+  <t-footer
+    theme="text"
+    copyright="多锻炼才能身体更好哦"
+    class="top50"
+  ></t-footer>
+  <t-footer
+    theme="text"
+    copyright="Copyright © 2021-2031 HJW Rights Reserved."
+    class="top30"
+  ></t-footer>
 
   <t-popup visible="{{rootPopupVisible}}" placement="bottom" close-btn close-on-overlay-click>
     <view class="setting">

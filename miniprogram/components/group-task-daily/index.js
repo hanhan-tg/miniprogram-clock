@@ -13,7 +13,6 @@ Component({
   },
   lifetimes: {
     created() {
-      // console.log('created', headerText, contentList);
     }
   },
   methods: {

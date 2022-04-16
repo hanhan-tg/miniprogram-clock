@@ -23,5 +23,6 @@ App({
   getDB() {
     return require('./utils/getDB')
   }
+  
 });
 // require('./service/index');

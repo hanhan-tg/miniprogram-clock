@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "group-task-daily": "../../components/group-task-daily/index"
   },
   "navigationBarTitleText": "我创建的队伍"
 }
