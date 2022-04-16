@@ -3,9 +3,9 @@
   <view class="header">
     <view class="header-text">{{headerText}}</view>
   </view>
-  <view class="content" wx:for="{{contentList}}" wx:key="id" bindtap="onClick" data-id="{{item.t_id}}">
+  <view class="content" wx:for="{{contentList}}" wx:key="id" bindtap="onClick" data-id="{{item.t_id}}" data-complete="{{item.complete}}">
     <view class="content-info">{{item.name}}</view>
-    <view class="content-circle" bindtap="{{onSelect}}">
+    <view class="content-circle" bindtap="{{onSelect}}" hover-class="hover">
       <t-icon name="check-circle" wx:if="{{item.complete}}" class="check-circle" ></t-icon>
       <t-icon name="circle" wx:else class="circle"></t-icon>
     </view>

@@ -17,9 +17,10 @@ Component({
   },
   methods: {
     onClick(e) {
-      const id = e.currentTarget.dataset.id;
+      const { id, complete } = e.currentTarget.dataset;
       this.triggerEvent('onTaskClick', {
-        id
+        id,
+        complete
       })
     }
   }

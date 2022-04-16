@@ -77,7 +77,7 @@
   width: 100%;
   background-color: #fff;
   border-radius: 30rpx;
-  padding: 20rpx 30rpx;
+  padding: 40rpx 30rpx;
 }
 .top50 {
   margin-top: 50rpx;

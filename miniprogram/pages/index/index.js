@@ -28,19 +28,18 @@ Page({
     const groups = await getMyGroupAsMember();
     this.setData({
       dailyGroups: res,
-      hasJoinedGroup: groups.length > 0
+      hasJoinedGroup: groups?.length > 0
     })
   },
   async onClickDetail(e) {
-    const openId = await getOpenId();
-    const id = e.detail.id;
+    const {id, complete} = e.detail;
     const task = await getOneTask({
       task_id: id,
     })
-    const complete = task.completeUsers.find(u => u.wx_id === openId).complete;
-    // wx.navigateTo({
-    //   url: `/pages/detail/index?name=${task.name}&target=${task.description}&startTime=${task.start_time}&endTime=${task.end_time}&complete=${complete}`,
-    // })
+    // console.log('tttt', task, complete);
+    wx.navigateTo({
+      url: `/pages/detail/index?name=${task.name}&target=${task.description}&startTime=${task.start_time}&endTime=${task.end_time}&complete=${complete}&task_id=${id}`,
+    })
   },
   onAdd() {
     console.log('click add');
@@ -92,9 +91,13 @@ Page({
       url: '/pages/createTask/index',
     })
   },
-  onShow() {
+  async onShow() {
     // 重新请求
     console.log('show');
+    const res = await getDailyTasks();
+    this.setData({
+      dailyGroups: res,
+    })
   }
 });
 
