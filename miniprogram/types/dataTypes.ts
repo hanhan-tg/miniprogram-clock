@@ -10,6 +10,7 @@ interface Group {
   g_id: String,
   gl_id: String, // group leader wx_id
   name: String,
+  gl_name: String,
   description: String,
   is_disband: Boolean,
   members: Array<String>, // 存放wx_id

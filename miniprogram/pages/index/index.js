@@ -32,9 +32,6 @@ Page({
         url: '/pages/login/index',
       })
     }
-    // wx.navigateTo({
-    //   url: '/pages/createGroup/index',
-    // })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
@@ -84,6 +81,9 @@ Page({
   onJoinGroup() {
     this.setData({
       visible: false
+    })
+    wx.navigateTo({
+      url: '/pages/searchGroup/index',
     })
   },
   onAddClock() {

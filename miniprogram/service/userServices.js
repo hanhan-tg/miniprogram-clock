@@ -40,7 +40,6 @@ export async function getMyInfo() {
   const OPENID = await getOpenId()
   const users = await getAllUser();
   const myInfo = users.find((v, i) => v.wx_id === OPENID);
-  // console.log('getMyInfo', OPENID, users, myInfo);
   if (myInfo) {
     return {
       name: myInfo.name,
@@ -49,4 +48,11 @@ export async function getMyInfo() {
     }
   }
   return false
+}
+
+export async function getUserById(params) {
+  const { user_id } = params;
+  const users = await getAllUser();
+
+  return users.find(u => u.user_id === user_id);
 }

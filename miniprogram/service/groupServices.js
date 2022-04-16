@@ -1,3 +1,4 @@
+import { getMyInfo } from './userServices';
 
 const updateAllData = require('../controller/updateAllData');
 const getOpenId = require('../controller/getOpenId');
@@ -14,10 +15,12 @@ export async function createGroup(params) {
   const myOpenId = await getOpenId();
   const groups = await getAllGroup();
   let users = await getAllUser();
+  const myInfo = await getMyInfo();
 
   const newGroup = {
     g_id: getId(),
     gl_id: myOpenId,
+    gl_name: myInfo.name,
     is_disband: false,
     members: [myOpenId],
     tasks: [],
@@ -148,7 +151,7 @@ export async function updateGroupInfo(params) {
 
 export async function removeMembers(params) {
   const { members, group_id } = params
-  if(!params || !members.length || !group_id) {
+  if (!params || !members.length || !group_id) {
     return false;
   }
   let groups = await getAllGroup();
@@ -183,7 +186,7 @@ export async function removeMembers(params) {
 export async function getMyGroupAsLeader() {
   const myOpenId = await getOpenId();
   let groups = await getAllGroup();
-  
+
   return groups.filter(v => v.gl_id === myOpenId);
 }
 export async function getMyGroupAsMember() {
@@ -193,4 +196,17 @@ export async function getMyGroupAsMember() {
 
   const myGroups = users.find(v => v.wx_id === myOpenId).groups
   return groups.filter(v => myGroups.includes(v.g_id))
+}
+
+export async function searchGroupByName(params) {
+  const { group_name } = params
+  const groups = await getAllGroup();
+
+  return groups.filter(v => v.name.includes(group_name));
+}
+export async function searchGroupById(params) {
+  const { group_id } = params;
+  const groups = await getAllGroup();
+
+  return groups.find(v => v.g_id === group_id);
 }

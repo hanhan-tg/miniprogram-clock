@@ -1,0 +1,25 @@
+<!--pages/searchGroup/index.wxml-->
+<view class="search-group-container">
+  <view class="top">
+    <t-search model:value="{{searchValue}}" placeholder="请输入队伍id/名称" t-class="search-input" t-class-input="search-input" t-class-input-container="search-input" t-class-right="search-right" bindsubmit="onSubmit" bindchange="onChange" />
+  </view>
+  <view class="bottom">
+    <view class="card" wx:for="{{groupList}}" wx:key="g_id">
+      <view class="item">
+        <view class="text">队伍名：</view>
+        <view>{{item.name}}</view>
+      </view>
+      <view class="item">
+        <view class="text">队长：</view>
+        <view>{{item.gl_name}}</view>
+      </view>
+      <view class="item introduce">
+        <view class="text">队伍介绍：</view>
+        <view class="description">{{item.description}}</view>
+      </view>
+      <t-button t-class="btn" block bindtap="onJoin" data-group-id="{{item.g_id}}">加入</t-button>
+    </view>
+  </view>
+  <t-toast id="t-toast-join" />
+  <t-dialog id="t-dialog" />
+</view>

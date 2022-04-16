@@ -12,6 +12,9 @@ interface isRegistered {
 interface getMyInfo {
 
 }
+interface GetUserById {
+  user_id: String
+}
 
 // group
 interface CreateGroup {
@@ -38,6 +41,12 @@ interface UpdateGroupInfo {
 interface RemoveMembers {
   members: Array<String>;
   group_id: String;
+}
+interface SearchGroupByName {
+  group_name: String
+}
+interface SearchGroupById {
+  group_id: String
 }
 interface GetMyGroupAsLeader {
 
