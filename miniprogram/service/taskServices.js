@@ -105,27 +105,61 @@ export async function updateTaskInfo(params) {
 export async function getCompleteTask() {
   const myOpenId = await getOpenId();
   const users = await getAllUser();
-  const groups = await getAllGroup();
+  // const groups = await getAllGroup();
   const tasks = await getAllTask();
 
+  let myTotalTasks = 0;
+
   const res = [];
+  // users.forEach(u => {
+  //   if (u.wx_id === myOpenId) {
+  //     // 拿到所有参与队伍的id
+  //     u.groups.forEach(group_id => {
+  //       // 找到对应的group
+  //       const group = groups?.find(g => g.g_id === group_id);
+  //       tasks.forEach(t => {
+  //         // 找到group中存在的task并存入res
+  //         if (group?.tasks.includes(t.t_id)) {
+  //           res.push(t);
+  //         }
+  //       })
+  //     })
+  //   }
+  // })
+
+  // 通过user.groups中的每个group中的每个task中的completeUser中是否包含user
   users.forEach(u => {
-    if (u.wx_id === myOpenId) {
-      // 拿到所有参与队伍的id
+    if(u.wx_id === myOpenId) {
       u.groups.forEach(group_id => {
-        // 找到对应的group
-        const group = groups?.find(g => g.g_id === group_id);
         tasks.forEach(t => {
-          // 找到group中存在的task并存入res
-          if (group?.tasks.includes(t.t_id)) {
-            res.push(t);
+          if(t.g_id === group_id) {
+            myTotalTasks++;
+            const cu = t.completeUsers.find(c => c.wx_id === myOpenId)
+            if(cu) {
+              res.push({
+                name: t.name,
+                id: t.t_id,
+                description: t.description,
+                complete_time: cu.complete_time,
+                commonts: cu.commonts
+              });
+            }
           }
         })
       })
     }
   })
-  return res;
+  console.log('services', res, myTotalTasks);
+  return {
+    total: myTotalTasks,
+    completeTasks: res,
+  };
 }
+
+export async function getTasksNumber () {
+
+}
+
 
 export async function getOneTask(params) {
   const { task_id } = params;

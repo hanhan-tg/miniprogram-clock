@@ -1,2 +1,34 @@
 <!--pages/completeClocks/index.wxml-->
-<text>pages/completeClocks/index.wxml</text>
+<view class="complete-tasks-container">
+  <view class="top">
+    <view class="top-left">
+      打卡总数： {{total}}
+    </view>
+    <view class="top-right">
+      完成数： {{tasks.length}}
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="card" wx:for="{{tasks}}" wx:key="id">
+      <view class="title">{{item.name}}</view>
+      <t-divider />
+      <!-- <view class="name top20">
+        <view>打卡名称：</view>
+        <view>开大船</view>
+      </view> -->
+      <view class="time top20">
+        <view>打卡时间：</view>
+        <view>{{item.complete_time}}</view>
+      </view>
+      <view class="target top20">
+        <view>打卡目标：</view>
+        <textarea cols="30" rows="10" value="{{item.description}}" class="textarea top20"></textarea>
+      </view>
+      
+      <view class="commonts top20">
+        <view>打卡备注：</view>
+        <textarea cols="30" rows="2" value="{{item.commonts}}" class="textarea top20"></textarea>
+      </view>
+    </view>
+  </view>
+</view>

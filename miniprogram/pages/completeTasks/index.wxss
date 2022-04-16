@@ -1,1 +1,44 @@
 /* pages/completeClocks/index.wxss */
+.complete-tasks-container {
+  margin: 20rpx 30rpx;
+  
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+.top-right {
+  color: green
+}
+.bottom {
+  margin-top: 20rpx;
+}
+.card {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+.title {
+  text-align: center;
+}
+.name, .time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top20 {
+  margin-top: 20rpx;
+}
+.textarea {
+  text-indent: 65rpx;
+  height: 50rpx;
+  border: 1rpx solid dashed;
+}

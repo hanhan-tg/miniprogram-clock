@@ -33,7 +33,9 @@ Page({
     //     url: '/pages/login/index',
     //   })
     // }
-    
+    wx.navigateTo({
+      url: '/pages/completeTasks/index',
+    })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
@@ -96,6 +98,10 @@ Page({
       url: '/pages/createTask/index',
     })
   },
+  onShow() {
+    // 重新请求
+    console.log('show');
+  }
 });
 
 
