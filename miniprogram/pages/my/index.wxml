@@ -6,17 +6,17 @@
         <view class="item" bindtap="onClickGroupCreated">
             <view class="left">
                 <t-icon name="user"></t-icon>
-                <view class="text">我创建的队伍</view>
+                <view class="text">我参与的队伍</view>
             </view>
             <t-icon name="chevron-right"></t-icon>
         </view>
-        <view class="item" bindtap="onClickGroupJoined">
+        <!-- <view class="item" bindtap="onClickGroupJoined">
             <view class="left">
                 <t-icon name="usergroup"></t-icon>
                 <view class="text">我参与的队伍</view>
             </view>
             <t-icon name="chevron-right"></t-icon>
-        </view>
+        </view> -->
         <view class="item" bindtap="onClickClock">
             <view class="left">
                 <t-icon name="check-circle"></t-icon>

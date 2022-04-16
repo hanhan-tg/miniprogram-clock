@@ -3,6 +3,8 @@ import { createGroup, createTask, getMyGroupAsMember, getOneTask, getTasksInGrou
 import Dialog from '../../miniprogram_npm/tdesign-miniprogram/dialog/index';
 import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 
+const timestamp2Date = require('../../utils/timestamp2Date');
+
 // index.js
 
 Page({
@@ -13,6 +15,7 @@ Page({
     newGroupDescription: '',
     selectedGroupName: '请选择队伍',
     hasJoinedGroup: false,
+    todayTime: ''
   },
   async onLoad() {
     console.log('load');
@@ -24,12 +27,18 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/groups/index',
     // })
+    const now = new Date();
+    this.setData({
+      todayTime: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+    })
+
     const res = await getDailyTasks();
-    const groups = await getMyGroupAsMember();
+    const groups = await getMyGroupAsMember()
     this.setData({
       dailyGroups: res,
-      hasJoinedGroup: groups?.length > 0
+      hasJoinedGroup: groups?.length > 0,
     })
+
   },
   async onClickDetail(e) {
     const {id, complete} = e.detail;

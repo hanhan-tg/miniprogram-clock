@@ -85,3 +85,10 @@
 .top30 {
   margin-top: 30rpx;
 }
+.today-time {
+  width: 100%;
+  text-align: left;
+  color: rgba(0, 0, 0, .5);
+  text-indent: 20rpx;
+  margin-bottom: 10rpx;
+}

@@ -1,32 +1,11 @@
-// pages/my/index.js
+// pages/settings/index.js
 Page({
 
+  /**
+   * 页面的初始数据
+   */
   data: {
 
-  },
-
-  onClickGroupCreated() {
-    wx.navigateTo({
-      url: '/pages/groups/index',
-    })
-  },
-  onClickGroupJoined() {
-    
-  },
-  onClickClock() {
-    wx.navigateTo({
-      url: '/pages/completeTasks/index',
-    })
-  },
-  onClickJoin(){
-    wx.navigateTo({
-      url: '/pages/searchGroup/index',
-    })
-  },
-  onClickSetting() {
-    wx.navigateTo({
-      url: '/pages/settings/index',
-    })
   },
 
   /**
