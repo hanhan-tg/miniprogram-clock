@@ -1,5 +1,7 @@
 import { getOpenId } from "../../controller/index";
-import { createTask, getOneTask, isRegister } from "../../service/index";
+import { createGroup, createTask, getOneTask, isRegister } from "../../service/index";
+import Dialog from '../../miniprogram_npm/tdesign-miniprogram/dialog/index';
+import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 
 // index.js
 
@@ -20,6 +22,8 @@ Page({
       select: true
     }],
     visible: false,
+    newGroupName: '',
+    newGroupDescription: ''
   },
   async onLoad() {
     console.log('load');
@@ -28,9 +32,9 @@ Page({
         url: '/pages/login/index',
       })
     }
-    wx.navigateTo({
-      url: '/pages/groups/index',
-    })
+    // wx.navigateTo({
+    //   url: '/pages/createGroup/index',
+    // })
   },
   async onClickDetail(e) {
     const openId = await getOpenId();
@@ -49,9 +53,32 @@ Page({
       visible: true
     })
   },
-  onCreateGroup() {
+  async onCreateGroup() {
     this.setData({
       visible: false
+    })
+    Dialog.confirm({
+      title: '创建队伍',
+      confirmBtn: '创建',
+      cancelBtn: '取消',
+    }).then(async () => {
+      if (!this.data.newGroupDescription && !this.data.newGroupName) {
+        Toast({
+          context: this,
+          selector: '#t-toast-create-group',
+          message: '请输入完整信息',
+        });
+        return;
+      }
+      const suc = await createGroup({
+        name: this.data.newGroupName,
+        description: this.data.newGroupDescription
+      })
+      Toast({
+        context: this,
+        selector: '#t-toast-create-group',
+        message: suc ? '创建成功' : '创建失败，请重试',
+      });
     })
   },
   onJoinGroup() {

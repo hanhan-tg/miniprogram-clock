@@ -16,6 +16,7 @@ interface getMyInfo {
 // group
 interface CreateGroup {
   name: String,
+  description: String;
   gl_id?: String,
 }
 interface JoinGroup {

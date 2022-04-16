@@ -15,4 +15,19 @@
       <view class="setting-text" bindtap="onAddClock" hover-class="hover">添加打卡</view>
     </view>
   </t-popup>
+
+  <t-dialog id="t-dialog">
+    <view slot="content" class="create-group">
+      <view class="create-group-name">
+        <view>队伍名称：</view>
+        <t-input class="item-text-input" placeholder="请输入队伍名称" model:value="{{newGroupName}}"></t-input>
+      </view>
+      <view class="create-group-description">
+        <view class="item-text">队伍介绍：</view>
+        <textarea cols="30" rows="10" class="item-textarea" placeholder="请填入队伍介绍" model:value="{{newGroupDescription}}"></textarea>
+      </view>
+    </view>
+  </t-dialog>
+  <t-toast id="t-toast-create-group" />
+
 </view>
