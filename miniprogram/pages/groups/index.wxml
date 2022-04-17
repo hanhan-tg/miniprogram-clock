@@ -27,10 +27,11 @@
   <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click>
     <view class="setting">
       <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">数据分析</view>
-      <!-- <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view> -->
+      <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view>
       <view class="setting-text" bindtap="onGroupDisband" hover-class="hover">队伍解散</view>
     </view>
   </t-popup>
 
   <t-dialog id="t-dialog" show-overlay="{{false}}"/>
+  <t-toast id="t-toast"></t-toast>
 </view>

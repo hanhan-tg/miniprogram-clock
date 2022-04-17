@@ -29,7 +29,7 @@ Page({
     // })
     const now = new Date();
     this.setData({
-      todayTime: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+      todayTime: `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`,
     })
 
     const res = await getDailyTasks();

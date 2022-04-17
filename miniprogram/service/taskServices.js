@@ -193,7 +193,6 @@ export async function getDailyTasks () {
         const nowTime = new Date().getTime()
         if(startTime < nowTime && nowTime < endTime) {
           t.complete = t.completeUsers.find(u => u.wx_id === myOpenId)?.complete || false
-          console.log('ttt', t);
           taskList.push(t)
         } 
       }

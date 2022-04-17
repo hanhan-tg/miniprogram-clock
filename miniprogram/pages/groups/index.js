@@ -1,5 +1,6 @@
 // pages/createdGroup/index.js
 import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
+import Toast from "../../miniprogram_npm/tdesign-miniprogram/toast/index"
 
 const { getOpenId } = require("../../controller/index")
 const { getMyGroupAsLeader, disbandGroup } = require("../../service/index")
@@ -33,6 +34,11 @@ Page({
     })
   },
   onGroupTransfer() {
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: 'TODO',
+    });    
     this.setData({
       visible: false
     })
