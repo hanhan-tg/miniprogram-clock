@@ -1,9 +1,9 @@
 import { getOpenId } from "../../controller/index";
 import { createUser } from "../../service/index";
+import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 
 // pages/login/index.js
 Page({
-
   data: {
     name: '',
     sid: '',
@@ -19,16 +19,14 @@ Page({
       classname: this.data.classname
     })
     if (res) {
-      wx.navigateTo({
-        url: '/pages/index/index',
-      })
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: "注册成功",
+      });
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
     }
-  },
-  onLoad: function (options) {
-
-  },
-
-  onReady: function () {
-
   },
 })

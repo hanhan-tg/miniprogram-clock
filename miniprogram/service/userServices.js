@@ -53,6 +53,6 @@ export async function getMyInfo() {
 export async function getUserById(params) {
   const { user_id } = params;
   const users = await getAllUser();
-
-  return users.find(u => u.user_id === user_id);
+  
+  return users.find(u => u.wx_id === user_id)
 }

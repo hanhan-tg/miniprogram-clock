@@ -1,8 +1,10 @@
+const { getMyInfo } = require("../../service/index")
+
 // pages/my/index.js
 Page({
 
   data: {
-
+    info: {}
   },
 
   onClickGroupCreated() {
@@ -32,8 +34,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    const info = await getMyInfo();
+    this.setData({
+      info,
+    })
   },
 
   /**

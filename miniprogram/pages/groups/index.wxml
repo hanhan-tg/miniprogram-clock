@@ -19,11 +19,15 @@
         </view>
         <view class="group-bottom">
           <view class="label">队员：</view>
+          <!-- todo: members map to name -->
           <view class="name">{{item.members}}</view>
         </view>
       </view>
     </view>
   </block>
+  <view class="no-group" wx:if="{{groupList.length === 0}}">
+    还没有加入任何队伍哦
+  </view>
   <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange">
     <view class="setting">
       <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">数据分析</view>
@@ -32,6 +36,6 @@
     </view>
   </t-popup>
 
-  <t-dialog id="t-dialog" show-overlay="{{false}}"/>
+  <t-dialog id="t-dialog" show-overlay="{{false}}" />
   <t-toast id="t-toast"></t-toast>
 </view>

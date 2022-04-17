@@ -91,7 +91,9 @@ Page({
       message: res ? "创建成功" : "创建失败",
     });
     if (res) {
-      wx.navigateBack();
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
     }
   },
   onClickGroup(e) {

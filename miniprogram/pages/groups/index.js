@@ -3,7 +3,7 @@ import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
 import Toast from "../../miniprogram_npm/tdesign-miniprogram/toast/index"
 
 const { getOpenId } = require("../../controller/index")
-const { getMyGroupAsLeader, disbandGroup } = require("../../service/index")
+const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember } = require("../../service/index")
 
 Page({
   data: {
@@ -84,7 +84,8 @@ Page({
     await this.loadData();
   },
   async loadData() {
-    const groups = await getMyGroupAsLeader()
+    const groups = await getMyGroupAsMember()
+    console.log('groupslist', groups);
     const openId = await getOpenId();
     this.setData({
       groupList: groups.sort((a, b) => b.create_time - a.create_time),

@@ -18,7 +18,7 @@ Page({
     todayTime: ''
   },
   async onLoad() {
-    console.log('load');
+    console.log('home load');
     if (!await isRegister()) {
       wx.navigateTo({
         url: '/pages/login/index',
@@ -41,7 +41,7 @@ Page({
 
   },
   async onClickDetail(e) {
-    const {id, complete} = e.detail;
+    const { id, complete } = e.detail;
     const task = await getOneTask({
       task_id: id,
     })
@@ -56,8 +56,8 @@ Page({
       rootPopupVisible: true
     })
   },
-  onVisibleChange({detail}) {
-    const {visible} = detail;
+  onVisibleChange({ detail }) {
+    const { visible } = detail;
     this.setData({
       rootPopupVisible: visible
     })

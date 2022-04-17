@@ -10,7 +10,14 @@
   border-radius: 30rpx;
   padding: 30rpx;
 }
-
+.no-group {
+  margin: 20rpx 0;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 30rpx;
+  text-align: center;
+  color: rgba(0, 0, 0, .3);
+}
 .group-title {
   font-size: 50rpx;
   /* text-align: center; */

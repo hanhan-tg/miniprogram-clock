@@ -17,7 +17,7 @@
       />
     </block>
     <block wx:else>
-      <view class="no-group" wx:if="{{hasJoinedGroup}}">你还没有队伍哦，请先加入队伍再打卡</view>
+      <view class="no-group" wx:if="{{!hasJoinedGroup}}">你还没有队伍哦，请先加入队伍再打卡</view>
       <view wx:else class="no-task">今日暂无打卡</view>
     </block>
   </block>
@@ -37,7 +37,7 @@
     <view class="setting">
       <view class="setting-text" bindtap="onCreateGroup" hover-class="hover">创建队伍</view>
       <view class="setting-text" bindtap="onJoinGroup" hover-class="hover">加入队伍</view>
-      <view class="setting-text" bindtap="onAddClock" hover-class="hover">添加打卡</view>
+      <view class="setting-text" bindtap="onAddClock" hover-class="hover">发布打卡</view>
     </view>
   </t-popup>
 

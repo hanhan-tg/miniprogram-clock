@@ -1,4 +1,4 @@
-import { getMyInfo } from './userServices';
+import { getMyInfo, getUserById } from './userServices';
 
 const updateAllData = require('../controller/updateAllData');
 const getOpenId = require('../controller/getOpenId');
@@ -195,7 +195,15 @@ export async function getMyGroupAsMember() {
   let users = await getAllUser();
 
   const myGroups = users.find(v => v.wx_id === myOpenId).groups
-  return groups.filter(v => myGroups.includes(v.g_id))
+  const resGroups = groups.filter(v => myGroups.includes(v.g_id))
+  return await Promise.all(resGroups.map(async v => {
+    v.members = await Promise.all(v.members.map(async u_id => {
+      return (await getUserById({
+        user_id: u_id
+      })).name
+    }))
+    return v;
+  }))
 }
 
 export async function searchGroupByName(params) {

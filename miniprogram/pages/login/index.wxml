@@ -14,4 +14,6 @@
     <t-input class="input" model:value="{{classname}}"></t-input>
   </view>
   <t-button theme="primary" block class="btn" bindtap="onClickEnter">进入</t-button>
+
+  <t-toast id="t-toast"></t-toast>
 </view>
