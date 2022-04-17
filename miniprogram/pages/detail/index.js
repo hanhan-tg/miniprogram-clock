@@ -27,7 +27,7 @@ Page({
     }
     const openId = await getOpenId();
     const now = new Date();
-    const res = completeTask({
+    const res = await completeTask({
       task_id: this.data.task_id,
       user_id: openId,
       complete_time: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${now.getHours() > 10 ? now.getHours() : '0' + now.getHours()}:${now.getMinutes() > 10 ? now.getMinutes() : '0' + now.getMinutes()}`,
@@ -37,7 +37,7 @@ Page({
       context: this,
       selector: '#t-toast',
       message: res ? '打卡成功' : '打卡失败',
-      theme: 'success',
+      theme: res ? 'success' : 'fail',
       duration: 2000
     })
     if(res) {
@@ -60,6 +60,5 @@ Page({
       endTime: `${endT.getFullYear()}-${endT.getMonth()}-${endT.getDate()} ${'  '} ${endT.getHours() > 10 ? endT.getHours() : '0' + endT.getHours()}:${endT.getMinutes() > 10 ? endT.getMinutes() : '0' + endT.getMinutes()}`,
       // address
     })
-    console.log('ttttttttt', target, target.length);
   },
 })

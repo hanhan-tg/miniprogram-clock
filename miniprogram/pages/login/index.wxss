@@ -22,7 +22,7 @@
 }
 .name {
   display: inline-block;
-  width: 200rpx;
+  width: 300rpx;
 }
 .input {
   border: 1rpx solid rgba(0, 0, 0, 0.07);

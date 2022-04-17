@@ -43,6 +43,7 @@ export async function completeTask(params) {
 
   tasks = tasks.map(v => {
     if (v.t_id === task_id) {
+      success = true;
       v.completeUsers.push({
         wx_id: user_id,
         complete: true,
@@ -50,8 +51,8 @@ export async function completeTask(params) {
         complete_time,
         commonts
       })
-      return v;
     }
+    return v;
   })
 
   await updateAllData({
@@ -187,7 +188,7 @@ export async function getDailyTasks () {
     const taskList = [];
     tasks.forEach(t => {
       if(g.tasks.includes(t.t_id)) {
-        // 判断任务是否今日可做
+        // 判断任务是否有效
         const startTime = new Date(t.start_time).getTime();
         const endTime = new Date(t.end_time).getTime();
         const nowTime = new Date().getTime()

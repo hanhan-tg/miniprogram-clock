@@ -25,7 +25,7 @@ Page({
       })
     }
     // wx.navigateTo({
-    //   url: '/pages/groups/index',
+    //   url: '/pages/login/index',
     // })
     const now = new Date();
     this.setData({
