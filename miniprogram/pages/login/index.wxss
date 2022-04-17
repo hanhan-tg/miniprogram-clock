@@ -20,6 +20,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.name {
+  display: inline-block;
+  width: 200rpx;
+}
 .input {
   border: 1rpx solid rgba(0, 0, 0, 0.07);
   border-radius: 20rpx;
