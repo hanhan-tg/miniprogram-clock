@@ -20,7 +20,7 @@ Page({
       before: timestamp2Date(Date.now()),
       after: '2022-12-31 23:59:59',
     },
-
+    
     popupVisible: false,
   },
   onSelectGroup() {
@@ -40,6 +40,12 @@ Page({
       setStartOrEnd: 'end'
     })
   },
+  onVisibleChange({ detail }) {
+    const { visible } = detail;
+    this.setData({
+      popupVisible: visible
+    })
+  },
   onConfirm(e) {
     this.setData({
       startTimeVisible: false,
@@ -55,7 +61,7 @@ Page({
     })
   },
   async onClickCreateBtn() {
-    
+
     if (!this.data.startTime || !this.data.endTime || !this.data.taskName || !this.data.taskDescription || !this.data.targetGroup.groupName) {
       Toast({
         context: this,
@@ -84,7 +90,7 @@ Page({
       selector: '#t-toast',
       message: res ? "创建成功" : "创建失败",
     });
-    if(res) {
+    if (res) {
       wx.navigateBack();
     }
   },

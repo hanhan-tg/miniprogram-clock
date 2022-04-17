@@ -33,7 +33,7 @@
     class="top30"
   ></t-footer>
 
-  <t-popup visible="{{rootPopupVisible}}" placement="bottom" close-btn close-on-overlay-click>
+  <t-popup visible="{{rootPopupVisible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange" >
     <view class="setting">
       <view class="setting-text" bindtap="onCreateGroup" hover-class="hover">创建队伍</view>
       <view class="setting-text" bindtap="onJoinGroup" hover-class="hover">加入队伍</view>

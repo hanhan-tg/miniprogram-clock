@@ -24,7 +24,7 @@
       </view>
     </view>
   </block>
-  <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click>
+  <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange">
     <view class="setting">
       <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">数据分析</view>
       <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view>

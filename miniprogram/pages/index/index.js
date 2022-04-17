@@ -19,11 +19,11 @@ Page({
   },
   async onLoad() {
     console.log('load');
-    // if (!await isRegister()) {
-    //   wx.navigateTo({
-    //     url: '/pages/login/index',
-    //   })
-    // }
+    if (!await isRegister()) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+    }
     // wx.navigateTo({
     //   url: '/pages/groups/index',
     // })
@@ -54,6 +54,12 @@ Page({
     console.log('click add');
     this.setData({
       rootPopupVisible: true
+    })
+  },
+  onVisibleChange({detail}) {
+    const {visible} = detail;
+    this.setData({
+      rootPopupVisible: visible
     })
   },
   async onCreateGroup() {

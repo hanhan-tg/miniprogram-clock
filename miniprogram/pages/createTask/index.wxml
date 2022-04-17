@@ -17,20 +17,20 @@
     <view class="cell-btn" hover-class="hover">
       <t-cell t-class="cell-btn" title="选择开始时间" arrow hover note="{{startTime}}" bindtap="onClickStartPicker" t-class="cell"></t-cell>
     </view>
-    <t-date-time-picker title="选择开始时间" visible="{{startTimeVisible}}" mode="{{['minute']}}" value="{{startTime}}" format="YYYY-MM-DD HH:mm" bindconfirm="onConfirm" disableDate="{{disableDate}}" bindcancel="onPickerCancel"></t-date-time-picker>
+    <t-date-time-picker title="选择开始时间" visible="{{startTimeVisible}}" mode="{{['minute']}}" value="{{startTime}}" format="YYYY-MM-DD HH:mm" bindconfirm="onConfirm" disableDate="{{disableDate}}" bindcancel="onPickerCancel" ></t-date-time-picker>
   </view>
   <view class="block">
     <view class="name-text">结束时间：</view>
     <view class="cell-btn" hover-class="hover">
       <t-cell t-class="cell-btn" title="选择结束时间" arrow hover note="{{endTime}}" bindtap="onClickEndPicker" t-class="cell"></t-cell>
     </view>
-    <t-date-time-picker title="选择结束时间" visible="{{endTimeVisible}}" mode="{{['minute']}}" value="{{endTime}}" format="YYYY-MM-DD HH:mm" bindconfirm="onConfirm" disableDate="{{disableDate}}" bindcancel="onPickerCancel"></t-date-time-picker>
+    <t-date-time-picker title="选择结束时间" visible="{{endTimeVisible}}" mode="{{['minute']}}" value="{{endTime}}" format="YYYY-MM-DD HH:mm" bindconfirm="onConfirm" disableDate="{{disableDate}}" bindcancel="onPickerCancel" ></t-date-time-picker>
   </view>
   <t-button block hover t-class="createBtn" bindtap="onClickCreateBtn">创建</t-button>
 
   <t-message id="t-message" />
   <t-toast id="t-toast"></t-toast>
-  <t-popup visible="{{popupVisible}}" placement="bottom" close-on-overlay-click close-btn>
+  <t-popup visible="{{popupVisible}}" placement="bottom" close-on-overlay-click close-btn bind:visible-change="onVisibleChange">
     <view slot="content">
       <view class="setting">
         <view class="setting-text" wx:if="{{groups.length === 0}}">无</view>
