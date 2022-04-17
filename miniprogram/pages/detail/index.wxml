@@ -4,10 +4,18 @@
     <view class="prefix">任务名称：</view>
     <view class="text">{{name}}</view>
   </view>
-  <view class="item">
-    <view class="prefix">任务目标：</view>
-    <view class="text">{{target}}</view>
-  </view>
+  <block wx:if="{{target.length <= 10}}">
+    <view class="item">
+      <view class="prefix">任务目标：</view>
+      <view class="text">{{target}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="more10">
+      <view class="prefix">任务目标：</view>
+      <view class="more10-text">{{target}}</view>
+    </view>
+  </block>
   <view class="item">
     <view class="prefix">开始时间：</view>
     <view class="text">{{startTime}}</view>

@@ -1,7 +1,7 @@
 <!--pages/my/index.wxml-->
 
 <view class="my-container">
-    <Card name="{{info.name}}" stuid="{{info.stu_id}}"></Card>
+    <Card name="{{info.name || '-----'}}" stuid="{{info.stu_id || '-----'}}"></Card>
     <view class="content">
         <view class="item" bindtap="onClickGroupCreated">
             <view class="left">

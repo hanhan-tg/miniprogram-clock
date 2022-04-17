@@ -60,5 +60,6 @@ Page({
       endTime: `${endT.getFullYear()}-${endT.getMonth()}-${endT.getDate()} ${'  '} ${endT.getHours() > 10 ? endT.getHours() : '0' + endT.getHours()}:${endT.getMinutes() > 10 ? endT.getMinutes() : '0' + endT.getMinutes()}`,
       // address
     })
+    console.log('ttttttttt', target, target.length);
   },
 })

@@ -4,7 +4,7 @@
     <view class="daily-clock">今日打卡</view>
     <t-icon name="add-circle" bindtap="onAdd"></t-icon>
   </view>
-  <view class="today-time">{{todayTime}}</view>
+  <view class="today-time">{{todayTime || '-----------'}}</view>
   <view class="btn" bindtap="onClick">{{showText}}</view>
   <block>
     <block wx:if="{{dailyGroups.length > 0}}">

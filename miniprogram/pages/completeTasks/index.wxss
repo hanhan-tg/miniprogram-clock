@@ -40,5 +40,5 @@
 .textarea {
   text-indent: 65rpx;
   height: 50rpx;
-  border: 1rpx solid dashed;
+  /* border: 1rpx solid dashed; */
 }
