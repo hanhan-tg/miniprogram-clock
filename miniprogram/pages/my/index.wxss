@@ -28,3 +28,9 @@
 .text {
   margin-left: 30rpx;
 }
+
+.popup {
+  padding: 30rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+}

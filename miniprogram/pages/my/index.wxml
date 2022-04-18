@@ -2,7 +2,15 @@
 
 <view class="my-container">
     <Card name="{{info.name || '-----'}}" stuid="{{info.stu_id || '-----'}}"></Card>
+
     <view class="content">
+        <view class="item" bindtap="onClickSetting">
+            <view class="left">
+                <t-icon name="setting"></t-icon>
+                <view class="text">编辑个人资料</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
         <view class="item" bindtap="onClickGroupCreated">
             <view class="left">
                 <t-icon name="user"></t-icon>
@@ -31,12 +39,21 @@
             </view>
             <t-icon name="chevron-right"></t-icon>
         </view>
-        <view class="item" bindtap="onClickSetting">
+        <view class="item" bindtap="onClickAttach">
             <view class="left">
-                <t-icon name="setting"></t-icon>
-                <view class="text">设置</view>
+                <t-icon name="attach"></t-icon>
+                <view class="text">联系客服</view>
             </view>
             <t-icon name="chevron-right"></t-icon>
         </view>
     </view>
+    <t-popup visible="{{popupVisible}}" placement="center" bind:visible-change="onPopupVisibleChange">
+        <view slot="content" class="popup">
+            <t-image src="../../../assets/img/qrcode.png" mode="aspectFill" show-menu-by-longpress binderror="onImageError" bindload="onImageLoad">
+                <view slot="error">123</view>
+            </t-image>
+        </view>
+    </t-popup>
+
+
 </view>
