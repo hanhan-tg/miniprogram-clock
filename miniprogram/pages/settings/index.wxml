@@ -1,2 +1,32 @@
 <!--pages/settings/index.wxml-->
-<text>todo</text>
+<view class="settings-container">
+  <view class="top">
+    <view class="top-left">编辑个人资料</view>
+    <view class="top-right" bindtap="onClickSave">
+      <t-icon name="check" size="xl"> </t-icon>
+      <text>保存</text>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="image">
+      <t-avatar icon="user" size="large"></t-avatar>
+    </view>
+    <view class="block">
+      <view class="name">姓名</view>
+      <t-input class="t-input"placeholder="请填写姓名" model:value="{{name}}"></t-input>
+    </view>
+    <view class="underline"></view>
+    <view class="block">
+      <view class="name">学号/工号</view>
+      <t-input class="t-input" placeholder="请填写学号/工号" model:value="{{stuId}}"></t-input>
+    </view>
+    <view class="underline"></view>
+    <view class="block">
+      <view class="name">班级</view>
+      <t-input class="t-input" placeholder="请填写班级" model:value="{{classname}}"></t-input>
+    </view>
+  </view>
+  <t-toast id="t-toast" />
+
+
+</view>

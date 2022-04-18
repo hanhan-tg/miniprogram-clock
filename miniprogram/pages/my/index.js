@@ -54,4 +54,12 @@ Page({
       info,
     })
   },
+  async onShow() {
+    const info = await getMyInfo();
+    if (JSON.stringify(this.data.info) !== JSON.stringify(info)) {
+      this.setData({
+        info,
+      })
+    }
+  }
 })

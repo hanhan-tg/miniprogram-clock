@@ -1,1 +1,52 @@
 /* pages/settings/index.wxss */
+.settings-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+.top {
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: skyblue;
+  color: #fff;
+  padding: 0 50rpx;
+  font-size: 40rpx;
+
+}
+.top-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom {
+  background-color: #fff;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+}
+.image {
+  height: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.block {
+  display: flex;
+  padding: 0 70rpx;
+  align-items: center;
+  font-size: 40rpx;
+}
+.name {
+  width: 200rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+.t-input {
+  border-bottom: 0;
+}
+.underline {
+  height: 20rpx;
+  background-color: skyblue;
+}

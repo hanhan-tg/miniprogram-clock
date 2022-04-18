@@ -1,3 +1,5 @@
+import { getAllGroup } from '../controller/index';
+
 const updateAllData = require('../controller/updateAllData');
 const getOpenId = require('../controller/getOpenId');
 const getAllUser = require('../controller/getAllUser');
@@ -29,6 +31,36 @@ export async function createUser(params) {
   return true
 }
 
+export async function resetInfo(params) {
+  const { name, stu_id, classname } = params;
+  const myOpenId = await getOpenId();
+  let users = await getAllUser();
+  let groups = await getAllGroup();
+  let success = false;
+
+  users = users.map(u => {
+    if (u.wx_id === myOpenId) {
+      u.groups.forEach(group_id => {
+        const group = groups.find(g => g.g_id === group_id);
+        group.gl_name = name;
+      })
+      success = true;
+      return {
+        ...u,
+        name,
+        stu_id,
+        classname,
+      }
+    }
+    return u;
+  })
+  await updateAllData({
+    c_user: users,
+    c_group: groups
+  })
+  return success;
+}
+
 export async function isRegister() {
   if (await getMyInfo()) {
     return true
@@ -53,6 +85,6 @@ export async function getMyInfo() {
 export async function getUserById(params) {
   const { user_id } = params;
   const users = await getAllUser();
-  
+
   return users.find(u => u.wx_id === user_id)
 }
