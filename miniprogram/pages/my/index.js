@@ -66,5 +66,8 @@ Page({
         info,
       })
     }
+    this.getTabBar().setData({
+      selected: 1
+    })
   }
 })

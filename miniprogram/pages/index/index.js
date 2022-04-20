@@ -117,6 +117,9 @@ Page({
     this.setData({
       dailyGroups: res,
     })
+    this.getTabBar().setData({
+      selected: 0
+    })
   }
 });
 
