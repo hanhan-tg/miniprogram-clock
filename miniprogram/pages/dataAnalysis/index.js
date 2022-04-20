@@ -61,22 +61,29 @@ Page({
       popupVisible: true
     })
   },
-  async onSelectTask() {
+  onSelectTask() {
     this.setData({
       popupVisible: true
     })
   },
   onClickExport({retry}) {
-    if(retry && retry > 5) {
+    if(!this.data.groupName || !this.data.taskName) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请选择任务',
+      });
       return;
     }
+    if(retry && retry > 5) return;
+
     this.setData({
       isExporting: true
     })
     wx.cloud.callFunction({
       name: 'excel',
       data: {
-        filename: 'temp', // 任务id
+        filename: this.data.targetTaskId.substring(0, 8), // 任务id
         data: this.data.list
       }
     }).then((res) => {
@@ -152,7 +159,6 @@ Page({
         type: 'group'
       }
     })
-    // console.log('renderItems', {...renderItems});
     this.setData({
       groups,
       renderItems
