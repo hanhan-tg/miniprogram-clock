@@ -32,13 +32,13 @@
             </view>
             <t-icon name="chevron-right"></t-icon>
         </view>
-        <view class="item" bindtap="onClickJoin">
+        <!-- <view class="item" bindtap="onClickJoin">
             <view class="left">
                 <t-icon name="usergroup-add"></t-icon>
                 <view class="text">加入队伍</view>
             </view>
             <t-icon name="chevron-right"></t-icon>
-        </view>
+        </view> -->
         <view class="item" bindtap="onClickAnalysis">
             <view class="left">
                 <t-icon name="chart"></t-icon>

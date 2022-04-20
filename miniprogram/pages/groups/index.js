@@ -11,6 +11,7 @@ Page({
     openId: '',
     visible: false,
     activeGroupId: '',
+    isLoading: true,
   },
   onVisibleChange({ detail }) {
     const { visible } = detail;
@@ -89,7 +90,8 @@ Page({
     const openId = await getOpenId();
     this.setData({
       groupList: groups.sort((a, b) => b.create_time - a.create_time),
-      openId
+      openId,
+      isLoading: false
     })
   }
 })

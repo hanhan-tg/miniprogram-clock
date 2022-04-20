@@ -17,7 +17,8 @@
       />
     </block>
     <block wx:else>
-      <view class="no-group" wx:if="{{!hasJoinedGroup}}">你还没有队伍哦，请先加入队伍再打卡</view>
+      <view class="loading" wx:if="{{isLoading}}">正在加载中...</view>
+      <view class="no-group" wx:elif="{{!hasJoinedGroup}}">你还没有队伍哦，请先加入队伍再打卡</view>
       <view wx:else class="no-task">今日暂无打卡</view>
     </block>
   </block>

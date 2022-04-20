@@ -15,10 +15,11 @@ Page({
     newGroupDescription: '',
     selectedGroupName: '请选择队伍',
     hasJoinedGroup: false,
-    todayTime: ''
+    todayTime: '',
+    isLoading: true,
   },
   async onLoad() {
-    
+
     console.log('home load');
     // wx.navigateTo({
     //   url: '/pages/dataAnalysis/index',
@@ -28,7 +29,7 @@ Page({
         url: '/pages/login/index',
       })
     }
-    
+
     const now = new Date();
     this.setData({
       todayTime: `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`,
@@ -39,6 +40,7 @@ Page({
     this.setData({
       dailyGroups: res,
       hasJoinedGroup: groups?.length > 0,
+      isLoading: false,
     })
 
   },
