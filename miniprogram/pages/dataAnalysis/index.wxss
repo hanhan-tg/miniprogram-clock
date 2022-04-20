@@ -1,1 +1,53 @@
 /* pages/dataAnalysis/index.wxss */
+.data-analysis-container {
+  margin: 20rpx 30rpx;
+  padding: 20rpx 30rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.block:nth-of-type(2) {
+  margin-bottom: 50rpx;
+}
+.btn {
+  display: inline-block;
+}
+.export {
+  margin-top: 50rpx;
+  margin-bottom: 30rpx;
+}
+.url {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.link {
+  margin-top: 30rpx;
+}
+
+.selectOne {
+  /* height: 500rpx; */
+  background-color: #fff;
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
+  padding: 30rpx 50rpx;
+}
+
+.selectItem {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 20rpx;
+}
+
+.hover {
+  background-color: gray;
+}

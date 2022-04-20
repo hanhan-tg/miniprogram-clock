@@ -132,13 +132,13 @@ export async function getCompleteTask() {
 
   // 通过user.groups中的每个group中的每个task中的completeUser中是否包含user
   users.forEach(u => {
-    if(u.wx_id === myOpenId) {
+    if (u.wx_id === myOpenId) {
       u.groups.forEach(group_id => {
         tasks.forEach(t => {
-          if(t.g_id === group_id) {
+          if (t.g_id === group_id) {
             myTotalTasks++;
             const cu = t.completeUsers.find(c => c.wx_id === myOpenId)
-            if(cu) {
+            if (cu) {
               res.push({
                 name: t.name,
                 id: t.t_id,
@@ -152,7 +152,6 @@ export async function getCompleteTask() {
       })
     }
   })
-  console.log('services', res, myTotalTasks);
   return {
     total: myTotalTasks,
     completeTasks: res,
@@ -180,25 +179,25 @@ export async function getTasksInGroup(params) {
   return res;
 }
 
-export async function getDailyTasks () {
+export async function getDailyTasks() {
   const tasks = await getAllTask();
   const myOpenId = await getOpenId();
   let myGroups = await getMyGroupAsMember();
   myGroups = myGroups.map(g => {
     const taskList = [];
     tasks.forEach(t => {
-      if(g.tasks.includes(t.t_id)) {
+      if (g.tasks.includes(t.t_id)) {
         // 判断任务是否有效
         const startTime = new Date(t.start_time).getTime();
         const endTime = new Date(t.end_time).getTime();
         const nowTime = new Date().getTime()
-        if(startTime < nowTime && nowTime < endTime) {
+        if (startTime < nowTime && nowTime < endTime) {
           t.complete = t.completeUsers.find(u => u.wx_id === myOpenId)?.complete || false
           taskList.push(t)
-        } 
+        }
       }
     })
-    if(taskList.length) {
+    if (taskList.length) {
       return {
         groupName: g.name,
         taskList,
@@ -207,4 +206,42 @@ export async function getDailyTasks () {
     return null;
   })
   return myGroups.filter(g => g !== null);
+}
+
+export async function getExportData(params) {
+  const { task_id } = params;
+  if(!task_id) return false;
+  const users = await getAllUser();
+  const groups = await getAllGroup();
+  const tasks = await getAllTask();
+
+  const data = [];
+
+  const t = tasks.find(t => t.t_id === task_id);
+  t.completeUsers?.forEach(cu => {
+    const { name, classname, stu_id } = users.find(u => u.wx_id === cu.wx_id);
+    data.push({
+      isComplete: cu.complete ? '是' : '否',
+      completeTime: cu.complete_time,
+      stuId: stu_id,
+      name,
+      classname,
+    })
+  })
+  const g = groups.find(g => g.g_id === t.g_id);
+  g.members?.forEach(wx_id => {
+    const re = t.completeUsers.find(cu => cu.wx_id === wx_id);
+    if (re) {
+      return
+    }
+    const { name, classname, stu_id } = users.find(u => u.wx_id === wx_id);
+    data.push({
+      isComplete: '否',
+      completeTime: null,
+      stuId: stu_id,
+      name,
+      classname,
+    })
+  })
+  return data;
 }

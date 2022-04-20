@@ -30,6 +30,11 @@ Page({
       url: '/pages/settings/index',
     })
   },
+  onClickAnalysis() {
+    wx.navigateTo({
+      url: '/pages/dataAnalysis/index',
+    })
+  },
   onClickAttach() {
     this.setData({
       popupVisible: true

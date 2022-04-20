@@ -39,6 +39,13 @@
             </view>
             <t-icon name="chevron-right"></t-icon>
         </view>
+        <view class="item" bindtap="onClickAnalysis">
+            <view class="left">
+                <t-icon name="chart"></t-icon>
+                <view class="text">数据分析</view>
+            </view>
+            <t-icon name="chevron-right"></t-icon>
+        </view>
         <view class="item" bindtap="onClickAttach">
             <view class="left">
                 <t-icon name="attach"></t-icon>

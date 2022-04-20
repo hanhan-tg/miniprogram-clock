@@ -1,0 +1,15 @@
+<!--components/table/index.wxml-->
+<scroll-view class="table" scroll-x="true" scroll-y="true" enable-flex='true'>
+  <view class="row">
+    <view class="column" wx:for="{{headers}}" wx:key="item">
+      {{item}}
+    </view>
+  </view>
+  <view class="row" wx:for="{{list}}" wx:for-index="i" wx:for-item="h" wx:key="stuId">
+    <view class="column">{{list[i].name}}</view>
+    <view class="column">{{list[i].stuId}}</view>
+    <view class="column">{{list[i].classname}}</view>
+    <view class="column">{{list[i].isComplete}}</view>
+    <view class="column time">{{list[i].completeTime}}</view>
+  </view>
+</scroll-view>

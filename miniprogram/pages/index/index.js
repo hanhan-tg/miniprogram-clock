@@ -18,15 +18,17 @@ Page({
     todayTime: ''
   },
   async onLoad() {
+    
     console.log('home load');
+    // wx.navigateTo({
+    //   url: '/pages/dataAnalysis/index',
+    // })
     if (!await isRegister()) {
       wx.navigateTo({
         url: '/pages/login/index',
       })
     }
-    // wx.navigateTo({
-    //   url: '/pages/login/index',
-    // })
+    
     const now = new Date();
     this.setData({
       todayTime: `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`,

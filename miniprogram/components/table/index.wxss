@@ -1,0 +1,37 @@
+/* components/table/index.wxss */
+.table{
+  border: 1px solid black;
+  /* height: 500rpx; */
+  overflow-x: scroll;
+  /* width: 1000rpx; */
+  max-height: 700rpx;
+}
+.row {
+  border-bottom: 1px solid black;
+  width: 1350rpx;
+  /* display: flex; */
+  overflow: scroll;
+  height: 70rpx;
+  line-height: 70rpx;
+  box-sizing: border-box;
+}
+.row:last-of-type {
+  border: 0;
+}
+.column {
+  border-right: 1px solid black;
+  display: inline-block;
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.column:last-of-type {
+  width: 500rpx;
+}
+.time {
+}
+.column:last-of-type {
+  border: 0;
+}

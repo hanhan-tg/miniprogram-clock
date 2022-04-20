@@ -1,2 +1,30 @@
 <!--pages/dataAnalysis/index.wxml-->
-<text>todo</text>
+<view class="data-analysis-container">
+  <view class="block">
+    <t-button class="group btn" bindtap="onSelectGroup">选择队伍</t-button>
+    <view>{{groupName}}</view>
+  </view>
+  <view class="block">
+    <t-button class="task btn" bindtap="onSelectTask">选择任务</t-button>
+    <view>{{taskName}}</view>
+  </view>
+  <!-- <view class="form">表格</view> -->
+  <table headers="{{headers}}" list="{{list}}"></table>
+  <t-button class="export btn" bindtap="onClickExport">导出</t-button>
+  <text wx:if="{{isExporting}}">正在导出，请稍后......</text>
+
+  <block wx:if="{{fileUrl}}">
+    <view class="url">链接：{{fileUrl}}</view>
+    <t-button bindtap="copyFileUrl" class="link">点击复制链接</t-button>
+  </block>
+
+  <t-toast id="t-toast"></t-toast>
+
+  <t-popup visible="{{popupVisible}}" placement="bottom" bind:visible-change="onPopupVisibleChange">
+    <view slot="content" class="selectOne">
+      <view class="selectItem" bindtap="onSelectOne" hover-class="hover" wx:for="{{renderItems}}" data-id="{{item.id}}" data-name="{{item.name}}" data-type="{{item.type}}" wx:key="id">{{item.name}}</view>
+    </view>
+  </t-popup>
+
+
+</view>
