@@ -29,6 +29,7 @@
   border-top-right-radius: 30rpx;
   border-top-left-radius: 30rpx;
   padding: 30rpx 50rpx;
+  padding-bottom: 170rpx;
 }
 
 .setting-text {
