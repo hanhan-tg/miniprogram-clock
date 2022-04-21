@@ -38,6 +38,7 @@
   <t-popup visible="{{visible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange">
     <view class="setting">
       <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">数据分析</view>
+      <view class="setting-text" bindtap="onUpdateGroupInfo" hover-class="hover">修改信息</view>
       <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view>
       <view class="setting-text" bindtap="onRemoveMembers" hover-class="hover">移除队员</view>
       <view class="setting-text" bindtap="onGroupDisband" hover-class="hover">队伍解散</view>
@@ -50,6 +51,16 @@
         <t-radio value="{{item.id}}" label="{{item.name}}" wx:key="id" wx:for="{{renderItems}}" />
       </t-radio-group>
     </scroll-view>
+    <view slot="content" class="create-group" wx:elif="{{isUpdating}}">
+      <view class="create-group-name">
+        <view>队伍名称：</view>
+        <t-input class="item-text-input" placeholder="请输入队伍名称" model:value="{{updatingGroupName}}"></t-input>
+      </view>
+      <view class="create-group-description">
+        <view class="item-text">队伍介绍：</view>
+        <textarea cols="30" rows="10" class="item-textarea" placeholder="请填入队伍介绍" model:value="{{updatingGroupDescription}}"></textarea>
+      </view>
+    </view>
   </t-dialog>
 
   <t-toast id="t-toast"></t-toast>

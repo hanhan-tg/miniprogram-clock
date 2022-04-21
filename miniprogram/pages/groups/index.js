@@ -3,7 +3,7 @@ import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
 import Toast from "../../miniprogram_npm/tdesign-miniprogram/toast/index"
 
 const { getOpenId } = require("../../controller/index")
-const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember, searchGroupById, getUserById, transferGroupLeader, removeMembers } = require("../../service/index")
+const { disbandGroup, getMyGroupAsMember, searchGroupById, getUserById, transferGroupLeader, removeMembers, updateGroupInfo } = require("../../service/index")
 
 Page({
   data: {
@@ -15,7 +15,9 @@ Page({
     isTransferingOrRemove: false,
     activeGroupMemberId: '',
     renderItems: [],
-
+    isUpdating: false,
+    updatingGroupName: '',
+    updatingGroupDescription: '',
   },
   onVisibleChange({ detail }) {
     const { visible } = detail;
@@ -104,6 +106,47 @@ Page({
       }, 1000);
     })
   },
+  async onUpdateGroupInfo() {
+    const group = await searchGroupById({
+      group_id: this.data.activeGroupId
+    });
+    console.log('group', group);
+    this.setData({
+      isUpdating: true,
+      visible: false,
+      updatingGroupName: group.name,
+      updatingGroupDescription: group.description
+    })
+    console.log('this.data', this.data);
+    Dialog.confirm({
+      title: '修改队伍信息',
+      confirmBtn: '创建',
+      cancelBtn: '取消',
+    }).then(async () => {
+      if (!this.data.updatingGroupName && !this.data.updatingGroupDescription) {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: '请输入完整信息',
+        });
+        return;
+      }
+      const suc = await updateGroupInfo({
+        name: this.data.updatingGroupName,
+        description: this.data.updatingGroupDescription,
+        group_id: this.data.activeGroupId
+      })
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: suc ? '修改成功' : '修改失败，请重试',
+      });
+      this.setData({
+        isUpdating: false,
+      })
+      await this.onLoad();
+    })
+  },
   async onGroupDisband() {
     this.setData({
       visible: false
@@ -179,7 +222,6 @@ Page({
     })
   },
   onChange(e) {
-    // console.log('change', e);
     this.setData({
       activeGroupMemberId: e.detail.value
     })
