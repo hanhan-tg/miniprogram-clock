@@ -43,10 +43,9 @@ Page({
       activeGroupId: e.currentTarget.dataset.groupId,
       activeGroupMemberId: this.data.openId
     })
-    console.log('eee', e.currentTarget.dataset, this.data);
 
     Dialog.confirm({
-      title: '移除队员',
+      title: '是否退出',
       confirmBtn: '确认',
       cancelBtn: '取消',
     }).then(async () => {
@@ -138,14 +137,12 @@ Page({
     const group = await searchGroupById({
       group_id: this.data.activeGroupId
     });
-    console.log('group', group);
     this.setData({
       isUpdating: true,
       visible: false,
       updatingGroupName: group.name,
       updatingGroupDescription: group.description
     })
-    console.log('this.data', this.data);
     Dialog.confirm({
       title: '修改队伍信息',
       confirmBtn: '创建',
@@ -209,7 +206,17 @@ Page({
     const renderItems = await this.getRenderItems({
       isRemoveMembers: true
     })
-    console.log('renderItems', renderItems);
+    if (renderItems.length === 0) {
+      this.setData({
+        visible: false
+      })
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '暂无其他队员',
+      });
+      return;
+    }
     this.setData({
       renderItems,
       isTransferingOrRemove: true,
