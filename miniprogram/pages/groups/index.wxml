@@ -39,12 +39,13 @@
     <view class="setting">
       <view class="setting-text" bindtap="onDataAnalysis" hover-class="hover">数据分析</view>
       <view class="setting-text" bindtap="onGroupTransfer" hover-class="hover">队伍转让</view>
+      <view class="setting-text" bindtap="onRemoveMembers" hover-class="hover">移除队员</view>
       <view class="setting-text" bindtap="onGroupDisband" hover-class="hover">队伍解散</view>
     </view>
   </t-popup>
 
   <t-dialog id="t-dialog" show-overlay="{{true}}">
-    <scroll-view slot="content" wx:if="{{isTransfering}}" style="max-height: 500rpx;" scroll-y>
+    <scroll-view slot="content" wx:if="{{isTransferingOrRemove}}" style="max-height: 500rpx;" scroll-y>
       <t-radio-group bind:change="onChange" defaultValue="{{renderItems[0].id}}">
         <t-radio value="{{item.id}}" label="{{item.name}}" wx:key="id" wx:for="{{renderItems}}" />
       </t-radio-group>

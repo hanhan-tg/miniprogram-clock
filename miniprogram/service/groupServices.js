@@ -172,7 +172,7 @@ export async function removeMembers(params) {
 
   // 再在members的groups中吧groupid给删了
   users = users.map(v => {
-    if (v.groups.includes(group_id)) {
+    if (v.groups.includes(group_id) && members.includes(v.wx_id)) {
       v.groups = v.groups.filter(g_id => g_id !== group_id);
       success = true;
     }

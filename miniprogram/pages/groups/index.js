@@ -3,7 +3,7 @@ import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
 import Toast from "../../miniprogram_npm/tdesign-miniprogram/toast/index"
 
 const { getOpenId } = require("../../controller/index")
-const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember, searchGroupById, getUserById, transferGroupLeader } = require("../../service/index")
+const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember, searchGroupById, getUserById, transferGroupLeader, removeMembers } = require("../../service/index")
 
 Page({
   data: {
@@ -12,8 +12,8 @@ Page({
     visible: false,
     activeGroupId: '',
     isLoading: true,
-    isTransfering: false,
-    activeGroupLeaderId: '',
+    isTransferingOrRemove: false,
+    activeGroupMemberId: '',
     renderItems: [],
 
   },
@@ -44,12 +44,14 @@ Page({
       url: '/pages/dataAnalysis/index',
     })
   },
-  async onGroupTransfer() {
+  async getRenderItems({isRemoveMembers} = {}) {
     const group = await searchGroupById({
       group_id: this.data.activeGroupId
     })
     const renderItems = await Promise.all(group.members.map(
       async wx_id => {
+        if(isRemoveMembers && wx_id === group.gl_id) return;
+
         const user = await getUserById({
           user_id: wx_id
         })
@@ -58,9 +60,14 @@ Page({
           id: user.wx_id
         }
       }))
+      return renderItems.filter(i => i)
+  },
+  async onGroupTransfer() {
+    const renderItems = await this.getRenderItems();
+
     this.setData({
       visible: false,
-      isTransfering: true,
+      isTransferingOrRemove: true,
       renderItems,
     })
     Dialog.confirm({
@@ -71,12 +78,12 @@ Page({
       const group = await searchGroupById({
         group_id: this.data.activeGroupId
       })
-      if (group.gl_id === this.data.activeGroupLeaderId) {
+      if (group.gl_id === this.data.activeGroupMemberId) {
         return;
       }
       await transferGroupLeader({
         group_id: this.data.activeGroupId,
-        new_leader_id: this.data.activeGroupLeaderId
+        new_leader_id: this.data.activeGroupMemberId
       })
       this.setData({
         groupList: [],
@@ -85,14 +92,14 @@ Page({
       await this.onLoad();
       setTimeout(() => {
         this.setData({
-          isTransfering: false,
+          isTransferingOrRemove: false,
           isLoading: false,
         })
       }, 1000);
     }).catch(() => {
       setTimeout(() => {
         this.setData({
-          isTransfering: false,
+          isTransferingOrRemove: false,
         })
       }, 1000);
     })
@@ -125,13 +132,56 @@ Page({
         groupList: newList,
       })
     })
-
-
+  },
+  async onRemoveMembers() {
+    const renderItems = await this.getRenderItems({
+      isRemoveMembers: true
+    })
+    console.log('renderItems', renderItems);
+    this.setData({
+      renderItems,
+      isTransferingOrRemove: true,
+      visible: false,
+      activeGroupMemberId: renderItems[0].id
+    })
+    Dialog.confirm({
+      title: '移除队员',
+      confirmBtn: '确认',
+      cancelBtn: '取消',
+    }).then(async () => {
+      const group = await searchGroupById({
+        group_id: this.data.activeGroupId
+      })
+      if (group.gl_id === this.data.activeGroupMemberId) {
+        return;
+      }
+      await removeMembers({
+        members: [this.data.activeGroupMemberId],
+        group_id: this.data.activeGroupId
+      })
+      this.setData({
+        groupList: [],
+        isLoading: true,
+      })
+      await this.onLoad();
+      setTimeout(() => {
+        this.setData({
+          isTransferingOrRemove: false,
+          isLoading: false,
+        })
+      }, 1000);
+    }).catch(() => {
+      setTimeout(() => {
+        this.setData({
+          isTransferingOrRemove: false,
+        })
+      }, 1000);
+    })
   },
   onChange(e) {
     // console.log('change', e);
     this.setData({
-      activeGroupLeaderId: e.detail.value
+      activeGroupMemberId: e.detail.value
     })
   },
   onLoad: async function (options) {
