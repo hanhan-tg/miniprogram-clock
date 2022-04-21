@@ -4,8 +4,9 @@
     <view class="group" wx:if="{{!item.is_disband}}">
       <view class="group-title">
         <view class="group-title-name">{{item.name}}</view>
-        <view class="group-title-control" bindtap="onClickSetting" data-group-id="{{item.g_id}}">
+        <view class="group-title-control" bindtap="onClickSetting" data-group-id="{{item.g_id}}" >
           <t-icon name="setting" wx:if="{{item.gl_id === openId}}"></t-icon>
+          <t-button wx:else bindtap="onClickExit" data-group-id="{{item.g_id}}">退出</t-button>
         </view>
       </view>
       <view class="group-content">

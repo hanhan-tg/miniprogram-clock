@@ -32,11 +32,39 @@ Page({
 
   },
   onClickSetting(e) {
+    const { groupId } = e.currentTarget.dataset
     this.setData({
       visible: true,
-      activeGroupId: e.currentTarget.dataset.groupId
+      activeGroupId: groupId
     })
+  },
+  async onClickExit(e) {
+    this.setData({
+      activeGroupId: e.currentTarget.dataset.groupId,
+      activeGroupMemberId: this.data.openId
+    })
+    console.log('eee', e.currentTarget.dataset, this.data);
 
+    Dialog.confirm({
+      title: '移除队员',
+      confirmBtn: '确认',
+      cancelBtn: '取消',
+    }).then(async () => {
+      await removeMembers({
+        members: [this.data.activeGroupMemberId],
+        group_id: this.data.activeGroupId
+      })
+      this.setData({
+        groupList: [],
+        isLoading: true,
+      })
+      await this.onLoad();
+      setTimeout(() => {
+        this.setData({
+          isLoading: false,
+        })
+      }, 1000);
+    })
   },
   onDataAnalysis() {
     this.setData({
@@ -46,13 +74,13 @@ Page({
       url: '/pages/dataAnalysis/index',
     })
   },
-  async getRenderItems({isRemoveMembers} = {}) {
+  async getRenderItems({ isRemoveMembers } = {}) {
     const group = await searchGroupById({
       group_id: this.data.activeGroupId
     })
     const renderItems = await Promise.all(group.members.map(
       async wx_id => {
-        if(isRemoveMembers && wx_id === group.gl_id) return;
+        if (isRemoveMembers && wx_id === group.gl_id) return;
 
         const user = await getUserById({
           user_id: wx_id
@@ -62,7 +90,7 @@ Page({
           id: user.wx_id
         }
       }))
-      return renderItems.filter(i => i)
+    return renderItems.filter(i => i)
   },
   async onGroupTransfer() {
     const renderItems = await this.getRenderItems();
@@ -176,6 +204,7 @@ Page({
       })
     })
   },
+
   async onRemoveMembers() {
     const renderItems = await this.getRenderItems({
       isRemoveMembers: true
