@@ -22,7 +22,7 @@ Page({
 
     console.log('home load');
     // wx.navigateTo({
-    //   url: '/pages/dataAnalysis/index',
+    //   url: '/pages/groups/index',
     // })
     if (!await isRegister()) {
       wx.navigateTo({

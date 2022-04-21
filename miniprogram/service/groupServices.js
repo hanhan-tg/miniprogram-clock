@@ -115,10 +115,13 @@ export async function transferGroupLeader(params) {
   const { group_id, new_leader_id } = params
   let groups = await getAllGroup();
   let success = false;
-
+  const user = await getUserById({
+    user_id: new_leader_id
+  })
   groups = groups.map(v => {
     if (v.g_id === group_id) {
       v.gl_id = new_leader_id;
+      v.gl_name = user.name
       success = true;
     }
     return v;

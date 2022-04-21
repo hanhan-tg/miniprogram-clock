@@ -43,6 +43,13 @@
     </view>
   </t-popup>
 
-  <t-dialog id="t-dialog" show-overlay="{{false}}" />
+  <t-dialog id="t-dialog" show-overlay="{{true}}">
+    <scroll-view slot="content" wx:if="{{isTransfering}}" style="max-height: 500rpx;" scroll-y>
+      <t-radio-group bind:change="onChange" defaultValue="{{renderItems[0].id}}">
+        <t-radio value="{{item.id}}" label="{{item.name}}" wx:key="id" wx:for="{{renderItems}}" />
+      </t-radio-group>
+    </scroll-view>
+  </t-dialog>
+
   <t-toast id="t-toast"></t-toast>
 </view>

@@ -3,7 +3,7 @@ import Dialog from "../../miniprogram_npm/tdesign-miniprogram/dialog/index"
 import Toast from "../../miniprogram_npm/tdesign-miniprogram/toast/index"
 
 const { getOpenId } = require("../../controller/index")
-const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember } = require("../../service/index")
+const { getMyGroupAsLeader, disbandGroup, getMyGroupAsMember, searchGroupById, getUserById, transferGroupLeader } = require("../../service/index")
 
 Page({
   data: {
@@ -12,6 +12,10 @@ Page({
     visible: false,
     activeGroupId: '',
     isLoading: true,
+    isTransfering: false,
+    activeGroupLeaderId: '',
+    renderItems: [],
+
   },
   onVisibleChange({ detail }) {
     const { visible } = detail;
@@ -40,25 +44,68 @@ Page({
       url: '/pages/dataAnalysis/index',
     })
   },
-  onGroupTransfer() {
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: 'TODO',
-    });
+  async onGroupTransfer() {
+    const group = await searchGroupById({
+      group_id: this.data.activeGroupId
+    })
+    const renderItems = await Promise.all(group.members.map(
+      async wx_id => {
+        const user = await getUserById({
+          user_id: wx_id
+        })
+        return {
+          name: user.name,
+          id: user.wx_id
+        }
+      }))
     this.setData({
-      visible: false
+      visible: false,
+      isTransfering: true,
+      renderItems,
+    })
+    Dialog.confirm({
+      title: '队伍转让',
+      confirmBtn: '确认',
+      cancelBtn: '取消',
+    }).then(async () => {
+      const group = await searchGroupById({
+        group_id: this.data.activeGroupId
+      })
+      if (group.gl_id === this.data.activeGroupLeaderId) {
+        return;
+      }
+      await transferGroupLeader({
+        group_id: this.data.activeGroupId,
+        new_leader_id: this.data.activeGroupLeaderId
+      })
+      this.setData({
+        groupList: [],
+        isLoading: true,
+      })
+      await this.onLoad();
+      setTimeout(() => {
+        this.setData({
+          isTransfering: false,
+          isLoading: false,
+        })
+      }, 1000);
+    }).catch(() => {
+      setTimeout(() => {
+        this.setData({
+          isTransfering: false,
+        })
+      }, 1000);
     })
   },
   async onGroupDisband() {
+    this.setData({
+      visible: false
+    })
     Dialog.confirm({
       title: '确认要解散吗？',
       confirmBtn: '确认',
       cancelBtn: '取消',
     }).then(async () => {
-      this.setData({
-        visible: false
-      })
       const res = await disbandGroup({
         group_id: this.data.activeGroupId
       })
@@ -81,12 +128,17 @@ Page({
 
 
   },
+  onChange(e) {
+    // console.log('change', e);
+    this.setData({
+      activeGroupLeaderId: e.detail.value
+    })
+  },
   onLoad: async function (options) {
     await this.loadData();
   },
   async loadData() {
     const groups = await getMyGroupAsMember()
-    console.log('groupslist', groups);
     const openId = await getOpenId();
     this.setData({
       groupList: groups.sort((a, b) => b.create_time - a.create_time),
