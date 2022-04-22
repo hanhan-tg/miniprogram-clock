@@ -18,7 +18,7 @@
   </t-tabs>
   <t-popup visible="{{popupVisible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange" >
     <view class="setting">
-      <view class="setting-text" bindtap="onUpdateTaskInfo" hover-class="hover">修改任务信息</view>
+      <!-- <view class="setting-text" bindtap="onUpdateTaskInfo" hover-class="hover">修改任务信息</view> -->
       <view class="setting-text" bindtap="onDeleteTask" hover-class="hover">删除任务</view>
     </view>
   </t-popup>
