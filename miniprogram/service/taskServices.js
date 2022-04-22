@@ -184,6 +184,7 @@ export async function getDailyTasks() {
   const myOpenId = await getOpenId();
   let myGroups = await getMyGroupAsMember();
   myGroups = myGroups.map(g => {
+    if(g.is_disband === true) return;
     const taskList = [];
     tasks.forEach(t => {
       if (g.tasks.includes(t.t_id)) {
@@ -196,16 +197,16 @@ export async function getDailyTasks() {
           taskList.push(t)
         }
       }
-    })
+    });
     if (taskList.length) {
       return {
         groupName: g.name,
         taskList,
       }
     }
-    return null;
+    return;
   })
-  return myGroups.filter(g => g !== null);
+  return myGroups.filter(g => g);
 }
 
 export async function getExportData(params) {
