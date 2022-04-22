@@ -129,7 +129,8 @@ export async function getCompleteTasks() {
                 description: t.description,
                 complete_time: cu.complete_time,
                 commonts: cu.commonts,
-                isLeader: !!groups.find(g => g.gl_id === myOpenId),
+                isLeader: !!groups.find(g => g.gl_id === myOpenId && g.g_id === group_id),
+                group_id: group_id
               });
             }
           }
@@ -166,7 +167,8 @@ export async function getAllMyTasks() {
               description: t.description,
               complete_time: cu?.complete_time || '未完成',
               commonts: cu?.commonts || '无',
-              isLeader: !!groups.find(g => g.gl_id === myOpenId),
+              isLeader: !!groups.find(g => g.gl_id === myOpenId && g.g_id === group_id),
+              group_id: group_id
             });
           }
         })

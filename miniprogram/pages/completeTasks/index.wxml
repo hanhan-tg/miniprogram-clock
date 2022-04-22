@@ -16,6 +16,16 @@
       <template is="cards" data="{{...activePanelData}}"></template>
     </t-tab-panel>
   </t-tabs>
+  <t-popup visible="{{popupVisible}}" placement="bottom" close-btn close-on-overlay-click bind:visible-change="onVisibleChange" >
+    <view class="setting">
+      <view class="setting-text" bindtap="onUpdateTaskInfo" hover-class="hover">修改任务信息</view>
+      <view class="setting-text" bindtap="onDeleteTask" hover-class="hover">删除任务</view>
+    </view>
+  </t-popup>
+  <t-message id="t-message" />
+  <t-dialog id="t-dialog" close-on-overlay-click />
+
+
 
 </view>
 
@@ -25,7 +35,7 @@
     <view class="card" wx:for="{{tasks}}" wx:key="id">
       <view class="card-top">
         <view class="title">{{item.name}}</view>
-        <t-icon name="setting" class="setting"></t-icon>
+        <t-icon name="setting" class="card-setting" size="20px" wx:if="{{item.isLeader}}" bindtap="onClickSetting" data-task-id="{{item.id}}" data-group-id="{{item.group_id}}"></t-icon>
       </view>
       <t-divider />
       <!-- <view class="name top20">
