@@ -23,11 +23,21 @@
   margin-top: 20rpx;
   margin-bottom: 20rpx;
   border-radius: 30rpx;
-  background-color: #fff;
+  /* background-color: rgba(0, 0, 0, .07); */
+  border: 1rpx solid rgba(0, 0, 0, .07);
   padding: 20rpx 30rpx;
+}
+.card-top {
+  position: relative;
 }
 .title {
   text-align: center;
+}
+.setting {
+  position: absolute;
+  top: 50%;
+  right: 10rpx;
+  transform: translateY(-50%);
 }
 .name, .time {
   display: flex;

@@ -105,30 +105,14 @@ export async function updateTaskInfo(params) {
   return success;
 }
 
-export async function getCompleteTask() {
+export async function getCompleteTasks() {
   const myOpenId = await getOpenId();
   const users = await getAllUser();
-  // const groups = await getAllGroup();
+  const groups = await getAllGroup();
   const tasks = await getAllTask();
 
   let myTotalTasks = 0;
-
   const res = [];
-  // users.forEach(u => {
-  //   if (u.wx_id === myOpenId) {
-  //     // 拿到所有参与队伍的id
-  //     u.groups.forEach(group_id => {
-  //       // 找到对应的group
-  //       const group = groups?.find(g => g.g_id === group_id);
-  //       tasks.forEach(t => {
-  //         // 找到group中存在的task并存入res
-  //         if (group?.tasks.includes(t.t_id)) {
-  //           res.push(t);
-  //         }
-  //       })
-  //     })
-  //   }
-  // })
 
   // 通过user.groups中的每个group中的每个task中的completeUser中是否包含user
   users.forEach(u => {
@@ -144,7 +128,8 @@ export async function getCompleteTask() {
                 id: t.t_id,
                 description: t.description,
                 complete_time: cu.complete_time,
-                commonts: cu.commonts
+                commonts: cu.commonts,
+                isLeader: !!groups.find(g => g.gl_id === myOpenId),
               });
             }
           }
@@ -155,6 +140,43 @@ export async function getCompleteTask() {
   return {
     total: myTotalTasks,
     completeTasks: res,
+  };
+}
+
+export async function getAllMyTasks() {
+  const myOpenId = await getOpenId();
+  const users = await getAllUser();
+  const groups = await getAllGroup();
+  const tasks = await getAllTask();
+
+  let myTotalTasks = 0;
+  const res = [];
+
+  // 通过user.groups中的每个group中的每个task中的completeUser中是否包含user
+  users.forEach(u => {
+    if (u.wx_id === myOpenId) {
+      u.groups.forEach(group_id => {
+        tasks.forEach(t => {
+          if (t.g_id === group_id) {
+            myTotalTasks++;
+            const cu = t.completeUsers.find(c => c.wx_id === myOpenId)
+            res.push({
+              name: t.name,
+              id: t.t_id,
+              description: t.description,
+              complete_time: cu?.complete_time || '未完成',
+              commonts: cu?.commonts || '无',
+              isLeader: !!groups.find(g => g.gl_id === myOpenId),
+            });
+          }
+        })
+      })
+    }
+  })
+  console.log(res);
+  return {
+    total: myTotalTasks,
+    allTasks: res,
   };
 }
 
@@ -184,7 +206,7 @@ export async function getDailyTasks() {
   const myOpenId = await getOpenId();
   let myGroups = await getMyGroupAsMember();
   myGroups = myGroups.map(g => {
-    if(g.is_disband === true) return;
+    if (g.is_disband === true) return;
     const taskList = [];
     tasks.forEach(t => {
       if (g.tasks.includes(t.t_id)) {
@@ -211,7 +233,7 @@ export async function getDailyTasks() {
 
 export async function getExportData(params) {
   const { task_id } = params;
-  if(!task_id) return false;
+  if (!task_id) return false;
   const users = await getAllUser();
   const groups = await getAllGroup();
   const tasks = await getAllTask();

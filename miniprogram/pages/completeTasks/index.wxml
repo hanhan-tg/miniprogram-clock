@@ -1,17 +1,32 @@
 <!--pages/completeClocks/index.wxml-->
 <view class="complete-tasks-container">
-  <view class="top">
+  <!-- <view class="top">
     <view class="top-left">
       打卡总数： {{total}}
     </view>
     <view class="top-right">
       完成数： {{tasks.length}}
     </view>
-  </view>
+  </view> -->
+  <t-tabs defaultValue="{{0}}" bind:change="onTabsChange">
+    <t-tab-panel label="所有打卡" value="0">
+      <template is="cards" data="{{...activePanelData}}"></template>
+    </t-tab-panel>
+    <t-tab-panel label="已完成的打卡" value="1">
+      <template is="cards" data="{{...activePanelData}}"></template>
+    </t-tab-panel>
+  </t-tabs>
+
+</view>
+
+<template name="cards">
   <view class="bottom">
     <view class="card loading" wx:if="{{isLoading}}">正在加载中...</view>
     <view class="card" wx:for="{{tasks}}" wx:key="id">
-      <view class="title">{{item.name}}</view>
+      <view class="card-top">
+        <view class="title">{{item.name}}</view>
+        <t-icon name="setting" class="setting"></t-icon>
+      </view>
       <t-divider />
       <!-- <view class="name top20">
         <view>打卡名称：</view>
@@ -25,11 +40,11 @@
         <view>打卡目标：</view>
         <textarea cols="30" rows="10" value="{{item.description}}" class="textarea top20"></textarea>
       </view>
-      
+
       <view class="commonts top20">
         <view>打卡备注：</view>
         <textarea cols="30" rows="2" value="{{item.commonts}}" class="textarea top20"></textarea>
       </view>
     </view>
   </view>
-</view>
+</template>
