@@ -175,7 +175,6 @@ export async function getAllMyTasks() {
       })
     }
   })
-  console.log(res);
   return {
     total: myTotalTasks,
     allTasks: res,

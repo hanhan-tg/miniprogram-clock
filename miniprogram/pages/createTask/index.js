@@ -54,7 +54,6 @@ Page({
     })
   },
   onPickerCancel() {
-    console.log('zzzzz');
     this.setData({
       startTimeVisible: false,
       endTimeVisible: false

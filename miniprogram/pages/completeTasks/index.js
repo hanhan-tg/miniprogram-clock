@@ -19,7 +19,6 @@ Page({
     popupVisible: false,
   },
   onTabsChange({ detail }) {
-    // console.log('change', e);
     this.setData({
       activePanelData: {
         isLoading: false,
@@ -36,7 +35,7 @@ Page({
     })
   },
   async onUpdateTaskInfo() {
-    
+
   },
   async onDeleteTask() {
     Dialog.confirm({
@@ -70,7 +69,6 @@ Page({
   onLoad: async function (options) {
     const { total, completeTasks } = await getCompleteTasks();
     const { allTasks } = await getAllMyTasks();
-    console.log('tasks', allTasks);
     this.setData({
       completeTasks,
       allTasks,
