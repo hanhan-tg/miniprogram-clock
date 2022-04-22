@@ -3,15 +3,13 @@
     "pages/index/index",
     "pages/my/index",
     "pages/detail/index",
-    "pages/createdGroup/index",
-    "pages/joinedGroup/index",
     "pages/completeTasks/index",
     "pages/dataAnalysis/index",
     "pages/login/index",
     "pages/groups/index",
-    "pages/searchGroup/index",
     "pages/createTask/index",
-    "pages/settings/index"
+    "pages/settings/index",
+    "pages/searchGroup/index"
   ],
   "usingComponents": {
     "t-button": "./miniprogram_npm/tdesign-miniprogram/button/button",

@@ -22,7 +22,7 @@ Page({
 
     console.log('home load');
     // wx.navigateTo({
-    //   url: '/pages/groups/index',
+    //   url: '/pages/completeTasks/index',
     // })
     if (!await isRegister()) {
       wx.navigateTo({
